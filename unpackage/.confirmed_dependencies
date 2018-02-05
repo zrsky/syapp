@@ -1,0 +1,101 @@
+{
+	"index.html": {
+		"refer": [
+			"newsStatus.html",
+			"barcode_scan.html",
+			"tsProducts.html",
+			"companyShow.html",
+			"nj_course.html",
+			"husbany.html"
+		]
+	},
+	"newsStatus.html": {
+		"resources": [
+			"industryStatus.html"
+		],
+		"refer": [
+			"exhibitionStatus.html",
+			"governmentPolicy.html",
+			"industryStatus.html",
+			"index.html"
+		]
+	},
+	"tsProducts.html": {
+		"refer": [
+			"index.html",
+			"tsProductDetail.html"
+		]
+	},
+	"companyShow.html": {
+		"refer": [
+			"index.html",
+			"companyShowDetail.html"
+		]
+	},
+	"nj_course.html": {
+		"refer": [
+			"index.html",
+			"ls_course.html",
+			"industryStatus.html",
+			"syj_course.html",
+			"sc_course.html",
+			"jj_course.html",
+			"courseSearch.html"
+		],
+		"resources": [
+			"ls_course.html",
+			"industryStatus.html"
+		]
+	},
+	"husbany.html": {
+		"refer": [
+			"index.html"
+		]
+	},
+	"industryStatus.html": {
+		"refer": [
+			"newsStatusDetail.html"
+		]
+	},
+	"exhibitionStatus.html": {
+		"refer": [
+			"newsStatusDetail.html"
+		]
+	},
+	"jj_course.html": {
+		"refer": [
+			"newsStatusDetail.html",
+			"nj_course_detail.html"
+		]
+	},
+	"ls_course.html": {
+		"refer": [
+			"nj_course_detail.html"
+		]
+	},
+	"sc_course.html": {
+		"refer": [
+			"nj_course_detail.html"
+		]
+	},
+	"syj_course.html": {
+		"refer": [
+			"nj_course_detail.html"
+		]
+	},
+	"governmentPolicy.html": {
+		"refer": [
+			"newsStatusDetail.html"
+		]
+	},
+	"courseSearch.html": {
+		"refer": [
+			"nj_course_detail.html"
+		]
+	},
+	"nj_course_detail.html": {
+		"refer": [
+			"courseSearch.html"
+		]
+	}
+}

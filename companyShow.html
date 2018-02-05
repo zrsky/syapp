@@ -1,0 +1,186 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>企业展示</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="css/base.css"/>
+	</head>
+	<style type="text/css">
+		
+		.mui-content .tsproduct_title {
+			background: #FE7916;
+			height: 50px;
+		}
+		
+		.mui-content .tsproduct_title p {
+			line-height: 50px;
+			color: #fff;
+			text-align: center;
+			font-size: 16px;
+		}
+		
+		[v-cloak] {
+			display: none;
+		}
+	</style>
+	<script src="js/vue.min.js"></script>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<div class="mui-title">
+				<div class="mui-input-row mui-search searchInput">
+					<input id="search" type="search" class="mui-input-clear" placeholder="产品/溯源信息搜索"/>
+				</div>
+			</div>
+		</header>
+		<div class="mui-content">
+			<!--图片轮播-->
+			<div id="slider" class="mui-slider">
+				<div class="mui-slider-group mui-slider-loop">
+					<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
+					<div class="mui-slider-item mui-slider-item-duplicate">
+						<a href="#">
+							<img src="images/cs1.png">
+						</a>
+					</div>
+					<!-- 第一张 -->
+					<div class="mui-slider-item">
+						<a href="#">
+							<img src="images/cs1.png">
+						</a>
+					</div>
+					<!-- 第二张 -->
+					<div class="mui-slider-item">
+						<a href="#">
+							<img src="images/cs1.png">
+						</a>
+					</div>
+					<!-- 第三张 -->
+					<div class="mui-slider-item">
+						<a href="#">
+							<img src="images/cs1.png">
+						</a>
+					</div>
+					<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
+					<div class="mui-slider-item mui-slider-item-duplicate">
+						<a href="#">
+							<img src="images/cs1.png">
+						</a>
+					</div>
+				</div>
+				<div class="mui-slider-indicator">
+					<div class="mui-indicator mui-active"></div>
+					<div class="mui-indicator"></div>
+					<div class="mui-indicator"></div>
+				</div>
+			</div>
+			<div class="tsproduct_title">
+				<p>企业展示</p>
+			</div>
+			<div id="app" v-cloak>
+				<div id="pullrefresh">
+					<div class="products_wrapper">
+						<div class="product" v-for="value in data" ref="oLi" @tap="tapEvent($event,value.cid)">
+							<a href="#">
+								<img width="100%" height="80px" :src="value.thumb" />
+								<p class="pro_title" ref="title">{{value.organ_name}}</p>
+								<!--<p class="description" ref="introduce">{{value.intro}}</p>-->
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="searchResult">
+					{{search}}
+				</div>
+			</div>
+			
+		</div>
+	</body>
+
+</html>
+<script src="js/mui.min.js"></script>
+
+<script src="js/base.js"></script>
+<!--<script src="js/newsStatus.js"></script>-->
+<script type="text/javascript">
+//	mui.init({
+//		swipeBack: false,
+//		pullRefresh: {
+//			container: 'container',
+//			up: {
+//				contentrefresh: '正在加载...',
+//				auto: false,
+//				callback: pullupRefresh
+//			}
+//		}
+//	});
+	var url_ts = url + '/index/organs/index',
+		search = document.getElementById('search'),
+		page = 1,
+		currentPage = null,
+		html,
+		str = '';
+	html = '<div id="pullrefresh">'
+	html += '<div class="products_wrapper">';
+	html += '<div class="product" v-for="value in data" ref="oLi" @tap="tapEvent($event,value.cid)">';
+	html += '<a href="#"><img width="100%" :src="value.thumb" />';
+	html += '<p class="pro_title" ref="title">';
+	html += '{{value.organ_name}}';
+	html += '</p></div>';
+	html += '<div class="searchResult">'+'{{search}}'+'</div>';
+	//搜索
+//	document.addEventListener('tap', function() {
+//		console.log(search == document.activeElement)
+//				if(search == document.activeElement){
+//					console.log(74);
+////					setTimeout(function(){
+//						search.focus()
+////					},5)
+//				}
+//
+//	})
+	//搜索
+	window.addEventListener('keyup', function(e) {
+		var e = e || window.e;
+		keyword = search.value;
+		if(e && e.keyCode == 13) {
+			if(keyword) {
+				//				search.blur();
+				document.activeElement.blur();
+				url_ts = url + '/index/organs/index?keyword=' + keyword;
+				console.log('啥呀' + url_ts)
+				document.getElementById('app').innerHTML = html;
+				render(url_ts, '#pullrefresh','companyShowDetail.html');
+			} else {
+				mui.alert('输入内容不能为空');
+			}
+		}
+	}, false);
+//	初始化页面
+	render(url_ts, '#pullrefresh','companyShowDetail.html');
+	
+	//轮播图定时自动轮播
+	var slider = mui("#slider");
+	slider.slider({
+		interval: 5000
+	});
+
+	//搜索
+
+	//返回
+	//	mui.plusReady(function() {
+	//		currentPage = plus.webview.getWebviewById('tsProducts.html');
+	//		console.log('当前页面'+ page)
+	//	})
+	//	var old_back = mui.back;
+	//	mui.back = function() {
+	//		if(currentPage != null) {
+	//			currentPage.close();
+	//		}
+	//		old_back();
+	//	}
+</script>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>政府政策</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="css/mui.min.css">
+		<style>
+			html,
+			body {
+				background-color: #efeff4;
+			}
+			
+			.title {
+				padding: 20px 15px 10px;
+				color: #6d6d72;
+				font-size: 15px;
+				background-color: #fff;
+			}
+			
+			.mui-card-header:after {
+				content: none;
+			}
+			
+			.mui-card-header {
+				padding: 0!important;
+			}
+			
+			.mui-card-header img.leftImg {
+				margin-right: 15px;
+				width: 120px;
+				height: 82px;
+			}
+			
+			.mui-content .mui-scroll ul li:first-child {
+				/*border-top: 1px solid #C8C7CC;*/
+				/*border-bottom: 1px solid #C8C7CC;*/
+				margin-top: 20px;
+			}
+			
+			.mui-table-view-cell>a:not(.mui-btn) {
+				white-space: normal;
+			}
+			
+			.mui-table-view-chevron .mui-table-view-cell {
+				padding-right: 42px;
+			}
+			
+			#pullrefresh .mui-media-body {
+				display: flex;
+				flex-direction: column;
+				height: 82px;
+				;
+			}
+			
+			#pullrefresh ul li .status_title {
+				font-size: 4.5vw;
+				line-height: 5vw;
+				color: #000;
+				flex: 1;
+			}
+			
+			#pullrefresh ul li .time {
+				flex: 0.3;
+			}
+			
+			#pullrefresh ul li .time span {
+				font-size: 4vw;
+				/*margin-top: 31px;*/
+				display: inline-block;
+			}
+			
+			[v-cloak] {
+				display: none;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="pullrefresh" class="mui-content mui-scroll-wrapper">
+			<div class="mui-scroll">
+
+				<ul class="mui-table-view mui-table-view-chevron" id="app" v-cloak>
+					<li v-for="value in data" ref="oLi" @tap="tapEvent($event,value.id)" class="mui-table-view-cell">
+						<a href="#">
+							<div class="mui-card-header mui-card-media">
+								<img class="leftImg" width="120px" height="82px" :src="value.thumb" />
+								<div class="mui-media-body">
+									<p class="status_title">{{value.title}}</p>
+									<p class="time"><span>{{value.from}}</span>&nbsp;&nbsp;&nbsp;&nbsp; <span>{{value.update_time}}</span></p>
+								</div>
+							</div>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<script src="js/mui.min.js"></script>
+		<script src="js/vue.min.js"></script>
+		<script src="js/base.js"></script>
+		<!--<script src="js/newsStatus.js"></script>-->
+		<script>
+			var url = url + '/index/news/index/news_cate_id/4';
+			render(url, '#pullrefresh','newsStatusDetail.html');
+		</script>
+	</body>
+
+</html>

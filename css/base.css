@@ -1,0 +1,95 @@
+html,
+body {
+	height: 100%;
+}
+
+
+/*header*/
+
+header {
+	background-color: #FE7916!important;
+}
+
+header .mui-title {
+	width: 85%!important;
+}
+
+.searchInput {
+	line-height: normal;
+}
+
+.searchInput input {
+	background: #de6d19;
+	color: #FFFFFF;
+	height: 32px !important;
+}
+
+.mui-bar .mui-input-row .mui-input-clear~.mui-icon-clear {
+	top: 10px;
+}
+
+.mui-search .mui-placeholder {
+	line-height: 43px;
+	color: white;
+	text-align: left;
+	margin-left: 5px;
+}
+
+.mui-placeholder span {
+	font-weight: normal;
+	font-size: 16px;
+	margin-left: 10px;
+}
+
+.mui-icon {
+	color: #FFFFFF !important;
+}
+
+
+/*/header*/
+
+
+/*content 产品*/
+
+.mui-content .products_wrapper {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	padding: 0 2%;
+}
+
+.mui-content .products_wrapper .product {
+	width: 33%;
+	padding: 5px 4px 0 7px;
+}
+
+.mui-content .products_wrapper .product p {
+	font-size: 10px;
+	color: #000;
+	margin: 0;
+}
+
+.mui-content .products_wrapper .product p:nth-of-type(1) {
+	font-size: 14px;
+}
+
+.mui-content .products_wrapper .product p {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	/*height: 20px;*/
+}
+
+.mui-content #app .searchResult {
+	/*text-align: center;*/
+	margin-left: 30%;
+	margin-top: 20%;
+	color: #000!important;
+}
+
+[v-cloak] {
+	display: none;
+}
+
+
+/*/content 产品*/

@@ -1,0 +1,321 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>特色产品</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="css/base.css" />
+	</head>
+	<style type="text/css">
+		html,
+		body {
+			background-color: #efeff4;
+		}
+		
+		.mui-bar~.mui-content .mui-fullscreen {
+			top: 44px;
+			height: auto;
+		}
+		
+		.mui-pull-top-tips {
+			position: absolute;
+			top: -20px;
+			left: 50%;
+			margin-left: -25px;
+			width: 40px;
+			height: 40px;
+			border-radius: 100%;
+			z-index: 1;
+		}
+		
+		.mui-bar~.mui-pull-top-tips {
+			top: 24px;
+		}
+		
+		.mui-pull-top-wrapper {
+			width: 42px;
+			height: 42px;
+			display: block;
+			text-align: center;
+			background-color: #efeff4;
+			border: 1px solid #ddd;
+			border-radius: 25px;
+			background-clip: padding-box;
+			box-shadow: 0 4px 10px #bbb;
+			overflow: hidden;
+		}
+		
+		.mui-pull-top-tips.mui-transitioning {
+			-webkit-transition-duration: 200ms;
+			transition-duration: 200ms;
+		}
+		
+		.mui-pull-top-tips .mui-pull-loading {
+			/*-webkit-backface-visibility: hidden;
+				-webkit-transition-duration: 400ms;
+				transition-duration: 400ms;*/
+			margin: 0;
+		}
+		
+		.mui-pull-top-wrapper .mui-icon,
+		.mui-pull-top-wrapper .mui-spinner {
+			margin-top: 7px;
+		}
+		
+		.mui-pull-top-wrapper .mui-icon.mui-reverse {
+			/*-webkit-transform: rotate(180deg) translateZ(0);*/
+		}
+		
+		.mui-pull-bottom-tips {
+			text-align: center;
+			background-color: #efeff4;
+			font-size: 15px;
+			line-height: 40px;
+			color: #777;
+		}
+		
+		.mui-pull-top-canvas {
+			overflow: hidden;
+			background-color: #fafafa;
+			border-radius: 40px;
+			box-shadow: 0 4px 10px #bbb;
+			width: 40px;
+			height: 40px;
+			margin: 0 auto;
+		}
+		
+		.mui-pull-top-canvas canvas {
+			width: 40px;
+		}
+		
+		.mui-slider-indicator.mui-segmented-control {
+			background-color: #efeff4;
+		}
+		/*.mui-content .tsproduct_title  {
+				background: #7F7F7F;
+				height: 50px;
+			}*/
+		/*课堂分类*/
+		
+		.mui-content .tsproduct_title #slider {
+			top: 58.5vw;
+		}
+		
+		.mui-content .tsproduct_title #slider #sliderSegmentedControl {
+			height: 50px;
+			background: #7F7F7F;
+		}
+		
+		.mui-content .tsproduct_title #slider #sliderSegmentedControl .mui-scroll {
+			height: 100%;
+		}
+		
+		.mui-content .tsproduct_title .course_wrapper {
+			display: flex;
+			width: 100%;
+		}
+		
+		.mui-content .tsproduct_title .course_wrapper a {
+			flex: 1;
+			padding: 0;
+			line-height: 50px;
+			color: #fff;
+		}
+		
+		.mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active {
+			color: #fff!important;
+			background-color: #FE7916!important;
+		}
+		/*/课堂分类*/
+	</style>
+	<script src="js/vue.min.js"></script>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<div class="mui-title">
+				<div class="mui-input-row mui-search searchInput">
+					<input type="search" id="searchInput" value="产品/溯源信息搜索" readonly="readonly" />
+				</div>
+			</div>
+		</header>
+		<div class="mui-content">
+			<!--图片轮播-->
+			<div id="slider" class="mui-slider">
+				<div class="mui-slider-group mui-slider-loop">
+					<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
+					<div id="mui-slider-item" class="mui-slider-item mui-slider-item-duplicate">
+						<a href="#">
+							<img src="images/nj1.png">
+						</a>
+					</div>
+					<!-- 第一张 -->
+					<div class="mui-slider-item">
+						<a href="#">
+							<img src="images/nj1.png">
+						</a>
+					</div>
+					<!-- 第二张 -->
+					<div class="mui-slider-item">
+						<a href="#">
+							<img src="images/nj1.png">
+						</a>
+					</div>
+					<!-- 第三张 -->
+					<div class="mui-slider-item">
+						<a href="#">
+							<img src="images/nj1.png">
+						</a>
+					</div>
+					<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
+					<div class="mui-slider-item mui-slider-item-duplicate">
+						<a href="#">
+							<img src="images/nj1.png">
+						</a>
+					</div>
+				</div>
+				<div class="mui-slider-indicator">
+					<div class="mui-indicator mui-active"></div>
+					<div class="mui-indicator"></div>
+					<div class="mui-indicator"></div>
+				</div>
+			</div>
+			<div class="tsproduct_title">
+				<div id="slider" class="mui-slider mui-fullscreen">
+					<div id="sliderSegmentedControl" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+						<div class="mui-scroll course_wrapper">
+							<a class="mui-control-item mui-active" href="#item1mobile" data-wid="ls_course.html">
+								粮食讲堂
+							</a>
+							<a class="mui-control-item" href="#item2mobile" data-wid="jj_course.html">
+								经济讲堂
+							</a>
+							<a class="mui-control-item" href="#item3mobile" data-wid="sc_course.html">
+								蔬菜讲堂
+							</a>
+							<a class="mui-control-item" href="#item4mobile" data-wid="syj_course.html">
+								食用菌讲堂
+							</a>
+						</div>
+
+					</div>
+				</div>
+
+				<!--<div id="pullrefresh">
+				<div class="products_wrapper" id="app" v-cloak>
+					<div class="product" v-for="value in data">
+						<a href="#">
+							<img width="100%" src="images/p2.png" />
+							<p class="pro_title">{{value.name}}</p>
+							<p class="description">{{value.introduce}}</p>
+						</a>
+					</div>
+				</div>
+			</div>-->
+			</div>
+	</body>
+
+</html>
+<script src="js/mui.min.js"></script>
+<script src="js/webviewGroup1.js"></script>
+<script src="js/base.js"></script>
+<!--<script src="js/newsStatus.js"></script>-->
+<script>
+	mui.init({
+		swipeBack: true //启用右滑关闭功能
+	});
+	//轮播图
+	var slider = mui("#slider");
+	slider.slider({
+		interval: 5000
+	});
+	document.getElementById('searchInput').addEventListener('click', function() {
+		mui.openWindow({
+			url: 'courseSearch.html',
+			id: 'courseSearch.html',
+		})
+	}, false)
+
+	var pusb1, pusb2, pusb3, pusb4;
+	mui.plusReady(function() {
+		//					//预加载页面governmentPolicy.html
+		//					var pusb2 = mui.preload({
+		//					    url:'jj_course.html',
+		//					    id:'jj_course.html',//默认使用当前页面的url作为id
+		//					});
+		//					//预加载页面exhibitionStatus.html
+		//					var pusb3 = mui.preload({
+		//					    url:'sc_course.html',
+		//					    id:'exhibitionStatus.html',//默认使用当前页面的url作为id
+		//					});
+		var _self = plus.webview.currentWebview();
+		var group = new webviewGroup(_self.id, {
+			items: [{
+					id: "ls_course.html",
+					url: "ls_course.html",
+					extras: {}
+				}, {
+					id: "jj_course.html",
+					url: "jj_course.html",
+					extras: {}
+				}, {
+					id: "sc_course.html",
+					url: "sc_course.html",
+					extras: {}
+				},
+				{
+					id: "syj_course.html",
+					url: "syj_course.html",
+					extras: {}
+				}
+			],
+
+			onChange: function(obj) {
+				var c = document.querySelector(".mui-control-item.mui-active");
+				if(c) {
+					c.classList.remove("mui-active");
+				}
+				var target = document.querySelector(".mui-scroll .mui-control-item:nth-child(" + (parseInt(obj.index) + 1) + ")");
+				target.classList.add("mui-active");
+				if(target.scrollIntoView) {
+					target.scrollIntoView();
+				}
+				pusb2 = plus.webview.getWebviewById('jj_course.html');
+				pusb3 = plus.webview.getWebviewById('sc_course.html');
+				pusb4 = plus.webview.getWebviewById('syj_course.html');
+			}
+		});
+		mui(".mui-scroll").on("tap", ".mui-control-item", function(e) {
+			var wid = this.getAttribute("data-wid");
+			group.switchTab(wid);
+		});
+
+		//返回的时候关闭当前窗口webview
+		pusb1 = plus.webview.getWebviewById('ls_course.html');
+
+		console.log(pusb1)
+		//					console.log(pusb2)
+		//					console.log(pusb3)
+
+		//	            mui.currentWebview.opener().show();
+
+	});
+	var old_back = mui.back;
+	mui.back = function() {
+		if(pusb1 != null) {
+			pusb1.close();
+		}
+		if(pusb2 != null) {
+			pusb2.close();
+		}
+		if(pusb3 != null) {
+			pusb3.close();
+		}
+		if(pusb4 != null) {
+			pusb4.close();
+		}
+		old_back();
+	}
+</script>

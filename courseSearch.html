@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="css/base.css"/>
+		<style type="text/css">
+		[v-cloak] {
+			display: none;
+		}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<div class="mui-title">
+				<div class="mui-input-row mui-search searchInput">
+					<input type="search" id="search" class="mui-input-clear" placeholder="产品/溯源信息搜索" />
+				</div>
+			</div>
+		</header>
+		<div class="mui-content">
+			<div id="app" v-cloak>
+				<!--<div id="pullrefresh">
+					<div class="products_wrapper">
+						<div class="product" v-for="value in data">
+							<a href="#">
+								<img width="100%" src="images/p2.png" />
+								<p class="pro_title" ref="title">{{value.title}}</p>
+								<p class="description" ref="introduce">{{value.intro}}</p>
+							</a>
+						</div>
+					</div>
+				</div>-->
+				<!--<div class="searchResult">
+					{{search}}swdefswerfewsrfewsr
+				</div>-->
+			</div>
+		</div>
+	</body>
+
+</html>
+<script src="js/mui.min.js"></script>
+<script src="js/vue.min.js"></script>
+<script src="js/base.js"></script>
+<script type="text/javascript">
+//	mui.init({
+//		swipeBack: false,
+//		keyEventBind: {
+//			backbutton: false //关闭back按键监听
+//		},
+//		pullRefresh: {
+//			container: container,
+//			up: {
+//				contentrefresh: '正在加载...',
+//				auto: false,
+//				callback: pullupRefresh
+//			}
+//		}
+//	});
+	var url_ts,html, search = document.getElementById('search');
+	html = '<div id="pullrefresh">'
+	html += '<div class="products_wrapper">';
+	html += '<div class="product" v-for="value in data" ref="oLi" @tap="tapEvent($event,value.id)">';
+	html += '<img width="100%" :src="value.thumb" />';
+	html += '<p class="pro_title" ref="title">';
+	html += '{{value.title}}';
+	html += '</p></div>';
+	html += '<div class="searchResult">'+'{{search}}'+'</div>';
+	window.addEventListener('keyup', function(e) {
+		var e = e || window.e;
+		keyword = search.value;
+		if(e && e.keyCode == 13) {
+			if(keyword) {
+				//				search.blur();
+				document.activeElement.blur();
+				url_ts = url + '/index/article/index?keyword=' + keyword;
+				console.log('啥呀' + url_ts)
+				document.getElementById('app').innerHTML = html;
+				render(url_ts, '#pullrefresh','nj_course_detail.html');
+			} else {
+				mui.alert('输入内容不能为空');
+			}
+		}
+	}, false);
+</script>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>首页</title>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<style type="text/css">
+			body,
+			.mui-content {
+				background: #fff;
+			}
+			
+			header {
+				background: #FE7916!important;
+				height: 60px!important;
+			}
+			
+			header p:first-child {
+				color: #fff;
+				font-size: 18px;
+				padding-top: 10px;
+				margin-bottom: 0;
+				font-family: '宋体';
+			}
+			
+			header p:last-child {
+				color: #9D632E;
+			}
+			
+			.container .banner .banner_img {
+				margin-top: 16px;
+			}
+			/*.container .banner .banner_icons {
+				margin-top: -3px;
+			}*/
+			
+			.container .banner .mui-input-row {
+				text-align: center;
+			}
+			
+			.container .banner .circle {
+				margin-top: 20px;
+			}
+			
+			.container .banner .mui-input-row input {
+				width: 80%!important;
+				border: 1px solid #FFC6A9;
+				border-radius: 19px;
+				text-align: center;
+			}
+			
+			.mui-input-group .mui-input-row:after,
+			.mui-input-group:after,
+			.mui-input-group:before {
+				content: none;
+			}
+			
+			.container .banner .circle {
+				text-align: center;
+			}
+			
+			.container .banner .category {
+				margin: 20px 0;
+			}
+			
+			.container .banner .category li {
+				border: 1px solid #000;
+				list-style: none;
+				margin: 0 10px;
+				font-size: 12px;
+				padding: 7px 0.5vw;
+				text-align: center;
+				border-radius: 16px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<p>延津县电子商务平台</p>
+			<p>Yanjin County E-commerce Platform</p>
+		</header>
+		<section class="mui-content container">
+			<div class="banner">
+				<div class="banner_img">
+					<img width="100%" src="images/banner.png" />
+				</div>
+				<div class="banner_icons">
+					<img width="100%" src="images/icons.png" />
+				</div>
+				<form id="formSumit" class="mui-input-group" action="husbany.html">
+					<div class="mui-input-row">
+						<input type="text" class="mui-input-clear" id="suyuanCode" placeholder="请输入你想查询的条码" name="suyuanCode">
+					</div>
+				</form>
+				<div class="circle">
+					<img id="scan" width="80%" src="images/circle.png" />
+				</div>
+				<div class="category">
+					<div class="mui-content">
+						<div class="mui-row">
+							<div class="mui-col-sm-3 mui-col-xs-3">
+								<li class="mui-table-view-cell">
+									<a href="companyShow.html">企业展示</a>
+								</li>
+							</div>
+							<div class="mui-col-sm-3 mui-col-xs-3">
+								<li class="mui-table-view-cell">
+									<a href="tsProducts.html">特色产品</a>
+								</li>
+							</div>
+							<div class="mui-col-sm-3 mui-col-xs-3">
+								<li class="mui-table-view-cell">
+									<a href="newsStatus.html">新闻动态</a>
+								</li>
+							</div>
+							<div class="mui-col-sm-3 mui-col-xs-3">
+								<li class="mui-table-view-cell">
+									<a href="nj_course.html">农科课堂</a>
+								</li>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</body>
+
+</html>
+<script src="js/mui.min.js"></script>
+<!--<script src="js/common.js"></script>-->
+<script type="text/javascript" charset="utf-8">
+	mui.init({
+		swipeBack: true, //启用右滑关闭功能
+	});
+	var suyuanCode;
+	var suyuan = document.getElementById('suyuanCode');
+	var formSubmit = document.getElementById('formSumit');
+	var oLi = document.querySelectorAll(".mui-table-view-cell");
+	var htmlArr = ['companyShow.html', 'tsProducts.html', 'newsStatus.html', 'nj_course.html'];
+	document.getElementById('scan').addEventListener("click", function() {
+		mui.openWindow({
+			id: 'barcode_scan.html',
+			url: 'barcode_scan.html',
+		})
+	}, false)
+
+	function scaned(r, t, f) {
+		console.log(r);
+		console.log(t)
+		var href = 'husbany.html?'+t.split('?')[1];
+		mui.openWindow({
+			id:href,
+			url:href
+		})
+		console.log(f)
+	}
+	//查找溯源信息
+	window.addEventListener('keyup', function(e) {
+		var e = e || window.e;
+		if(e && e.keyCode == 13) {
+			suyuanCode = suyuan.value;
+			console.log(suyuanCode)
+			if(suyuanCode) {
+				//				search.blur();
+				document.activeElement.blur();
+				formSubmit.submit();
+			} else {
+				mui.alert('输入溯源码不能为空');
+			}
+		}
+	}, false);
+	//打开各个页面
+//	for(var i = 0, len = oLi.length; i < len; i++) {
+//		(function(i) {
+//			oLi[i].addEventListener("click", function() {
+//				console.log(htmlArr[i])
+//				mui.openWindow({
+//					id: htmlArr[i],
+//					url: htmlArr[i]
+//				})
+//			}, false)
+//		})(i)
+//	}
+
+	//	mui.plusReady(function(){
+	//		var first = null;
+	//          mui.back = function() {
+	//              if (!first) {//首次按键，提示‘再按一次退出应用’
+	//                  first = (new Date()).getTime();
+	//                  mui.toast('再按一次退出应用qweqwe');
+	//                  setTimeout(function() {
+	//                      first = null;
+	//                  }, 1000);
+	//              } else {
+	//                  if ((new Date()).getTime() - first < 1000) {
+	//                      plus.runtime.quit();
+	//                  }
+	//              }
+	//          };
+	//	})
+</script>
