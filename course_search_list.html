@@ -1,0 +1,179 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>农家课堂搜索列表</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="css/base.css"/>
+		
+		<style type="text/css">
+			header .mui-title {
+				color: #fff;
+			}			
+			
+			/*选项卡*/
+			
+			.mui-segmented-control {
+				border: none!important;
+			}
+			
+			.mui-segmented-control .mui-control-item.mui-active {
+				color: #fff;
+				background-color: #FE7916!important;
+			}
+			
+			.mui-segmented-control .mui-control-item {
+				border: none!important;
+				color: #fff!important;
+				line-height: 50px;
+			}
+			.mui-table-view:before,
+			.mui-table-view:after {
+			content:none!important;
+		}
+		
+			.mui-content .searchResult {
+				font-size:18px;
+				/*text-align: center;*/
+				margin-top:40%;
+			}
+			[v-cloak] {
+				display: none;
+			}
+			/*/选项卡*/
+		</style>
+	</head>
+	
+	<body>
+		<header class="mui-bar mui-bar-nav">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title">搜索结果</h1>
+		</header>
+		<div class="mui-content">
+			<div id="pullrefresh" class="mui-content mui-scroll-wrapper">
+				<div class="mui-scroll">
+					<div id="app" v-cloak>
+						<div id="products_wrapper" class="mui-table-view mui-table-view-chevron products_wrapper" style="background:none;border-bottom: none;">
+							<div class="product" v-for="value in data" ref="oLi" @tap="tapEvent($event,value.id,value.article_cate_id)">
+								<a href="#">
+									<img width="100%" height="80px" :src="value.thumb" />
+									<p class="pro_title" ref="title">{{value.title}}</p>
+								</a>
+							</div>
+						</div>
+						<div v-if="search" class="searchResult">
+							{{search}}
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--<div id="app" v-cloak>
+				<div id="pullrefresh" class=" mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<div class="mui-table-view mui-table-view-chevron products_wrapper" style="background:none;border-bottom: none;margin-top:44px">
+							<div class="product" v-for="value in data" ref="oLi" @tap="tapEvent($event,value.id)">
+								<a href="#">
+									<img width="100%" height="80px" :src="value.thumb" />
+									<p class="pro_title" ref="title">{{value.title}}</p>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="searchResult">
+					{{search}}
+				</div>
+			</div>-->
+		</div>
+	</body>
+
+</html>
+<script src="js/mui.min.js"></script>
+<script src="js/vue.min.js"></script>
+<script src="js/base.js"></script>
+<script type="text/javascript">
+		var url_sh = url + '/index/article/index/keyword/',page=1,name,self;
+			mui.init({
+				swipeBack: true, //启用右滑关闭功能
+				pullRefresh: {
+					container: "#pullrefresh", //下拉刷新容器标识，querySelector能定位的css选择器均可，比如：id、.class等
+					
+					up: {
+						height: 50, //可选.默认50.触发上拉加载拖动距离
+						auto: true, //可选,默认false.自动上拉加载一次
+						contentrefresh: "正在加载...", //可选，正在加载状态时，上拉加载控件上显示的标题内容
+						contentnomore: '没有更多数据了', //可选，请求完毕若没有更多数据时显示的提醒内容；
+						callback: loadMoreData //必选，刷新函数，根据具体业务来编写，比如通过ajax从服务器获取新数据；
+					}
+				}
+			});
+			console.log(url)
+			mui.plusReady(function(){
+				self = plus.webview.currentWebview();
+				name = plus.webview.currentWebview().name;
+				console.log(name)
+			})
+			var vue = new Vue({
+				el: '#app',
+				data: {
+					data: [],
+					search: '',
+					cate_name:''
+				},
+				methods: {
+					tapEvent: function(event, id, cate_name) {
+						console.log(id)
+						//页面跳转到新闻详情页
+						console.log(event.currentTarget)
+		
+						mui.openWindow({
+							url: 'nj_course_detail.html',
+							id: 'nj_course_detail.html',
+							extras: {
+								code: id,
+								cate_name: cate_name
+							}
+						});
+	
+				}
+		}
+			})
+			
+			function loadMoreData(){
+				console.log("name:"+name)
+				mui.getJSON(url_sh + name, {
+					page:page
+				}, function(res) {
+						if(res.data.data.length==0){
+					if(page==2){
+							vue.search = '你搜索的内容为空';
+							mui('#pullrefresh').pullRefresh().disablePullupToRefresh();
+						}
+					}else{
+						res.data.data.forEach(function(item,index){
+							res.data.data[index].thumb = url + item.thumb;
+						})
+					}
+					
+					console.log('结果：'+JSON.stringify(res));
+					vue.data = vue.data.concat(res.data.data);
+					var products_wrapper = document.getElementById('products_wrapper');
+					if(mui.os.ios){
+						products_wrapper.style.marginTop = '44px';
+					}
+					mui('#pullrefresh').pullRefresh().endPullupToRefresh(res.data.data.length == 0);
+				})
+				page++;
+			}
+
+		var old_back = mui.back;
+			mui.back = function() {
+				console.log('你到底做了什么')
+				if(self){
+					self.close();
+				}
+				old_back();
+			}
+		</script>

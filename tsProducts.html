@@ -9,9 +9,14 @@
 		<link rel="stylesheet" type="text/css" href="css/base.css" />
 	</head>
 	<style type="text/css">
+		header {
+			z-index:101!important;
+		}
 		.mui-content .tsproduct_title {
 			background: #FE7916;
 			height: 50px;
+			position: relative;
+			z-index: 100;
 		}
 		
 		.mui-content .tsproduct_title p {
@@ -20,7 +25,12 @@
 			text-align: center;
 			font-size: 16px;
 		}
-		
+		.mui-content .mui-slider {
+			z-index: 100!important;
+		}
+		.mui-table-view:after {
+			content:none!important;
+		}
 		[v-cloak] {
 			display: none;
 		}
@@ -32,7 +42,7 @@
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 			<div class="mui-title">
 				<div class="mui-input-row mui-search searchInput">
-					<input type="search" id="search" class="mui-input-clear" placeholder="产品/溯源信息搜索" />
+					<input type="search" id="search" value="产品/溯源信息搜索" readonly="readonly"/>
 				</div>
 			</div>
 		</header>
@@ -41,7 +51,7 @@
 			<div id="slider" class="mui-slider">
 				<div class="mui-slider-group mui-slider-loop">
 					<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
-					<div class="mui-slider-item mui-slider-item-duplicate">
+					<div class="mui-slider-item mui-slider-item-duplicate" id="mui-slider-item">
 						<a href="#">
 							<img src="images/c1.png">
 						</a>
@@ -80,33 +90,57 @@
 			<div class="tsproduct_title">
 				<p>特色产品</p>
 			</div>
-
-			<div id="app" v-cloak>
-				<div id="pullrefresh">
-					<div class="products_wrapper">
+			<div id="pullrefresh" class="mui-content mui-scroll-wrapper">
+			<div class="mui-scroll">
+				<div id="app" v-cloak>
+					<div class="mui-table-view mui-table-view-chevron products_wrapper" style="background:none;border-bottom: none;">
 						<div class="product" v-for="value in data" ref="oLi" @tap="tapEvent($event,value.pid)">
 							<a href="#">
 								<img width="100%" height="80px" :src="value.pro_img" />
 								<p class="pro_title" ref="title">{{value.name}}</p>
-								<!--<p class="description" ref="introduce">{{value.intro}}</p>-->
 							</a>
 						</div>
 					</div>
+					<div v-if="search" class="searchResult">
+					{{search}}
 				</div>
-				<!--<div class="searchResult">
-					{{search}}swdefswerfewsrfewsr
-				</div>-->
+				</div>
 			</div>
+		</div>
+			
+			<!--<div id="app" v-cloak>
+				<div id="pullrefresh" class=" mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<div class="mui-table-view mui-table-view-chevron products_wrapper" style="background:none;border-bottom: none;">
+							<div class="product" v-for="value in data" ref="oLi" @tap="tapEvent($event,value.pid)">
+								<a href="#">
+									<img width="100%" height="80px" :src="value.pro_img" />
+									<p class="pro_title" ref="title">{{value.name}}</p>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="searchResult">
+					{{search}}
+				</div>
+			</div>-->
 		</div>
 	</body>
 
 </html>
 <script src="js/mui.min.js"></script>
-
 <script src="js/base.js"></script>
 <!--<script src="js/newsStatus.js"></script>-->
 <script type="text/javascript">
 	mui.init();
+	//设置content的margin-top
+	var slider = document.getElementById('slider');
+				
+				if(slider && mui.os.ios){
+					var height = slider.offsetHeight+ 50 + 44;
+					document.getElementById('pullrefresh').style.marginTop = height+'px';
+				}			
 	var url = url + '/index/products/index',
 		page = 1,
 		currentPage = null,
@@ -114,55 +148,26 @@
 		html,
 		pusb1,
 		search = document.getElementById('search');
-	html = '<div id="pullrefresh">'
-	html += '<div class="products_wrapper">';
-	html += '<div class="product" v-for="value in data" ref="oLi" @tap="tapEvent($event,value.pid)">';
-	html += '<img width="100%" height="80px" :src="value.pro_img" />';
-	html += '<p class="pro_title" ref="title">';
-	html += '{{value.name}}';
-	html += '</p></div>';
-	html += '<div class="searchResult">' + '{{search}}' + '</div>';
+		
+		search.addEventListener('tap',function(){
+			mui.openWindow({
+				id:'search.html',
+				url:'search.html',
+				extras: {
+					listUrl:'tsProductSearch.html'
+				}
+			})
+		},false)
 
-	//搜索
-	window.addEventListener('keyup', function(e) {
-		var e = e || window.e;
-		keyword = search.value;
-		if(e && e.keyCode == 13) {
-			if(keyword) {
-				//				search.blur();
-				document.activeElement.blur();
-				url_ts = url + '/index/products/index?keyword=' + keyword;
-				console.log('啥呀' + url_ts)
-				document.getElementById('app').innerHTML = html;
-				render(url_ts, '#pullrefresh','tsProductDetail.html');
-			} else {
-				mui.alert('输入内容不能为空');
-			}
-		}
-	}, false);
 	//	初始化页面
 
 	render(url, '#pullrefresh','tsProductDetail.html');
+	//设置content的margin-top
+//	var height = document.getElementById('mui-slider-item').offsetHeight+ 50 + 44;
+//	document.getElementById('pullrefresh').style.marginTop = height+'px';
 
 	var slider = mui("#slider");
 	slider.slider({
 		interval: 5000
 	});
-	//返回
-	//	mui.plusReady(function() {
-	//	    plus.key.addEventListener('backbutton', function() {
-	//	    	console.log(564356536563)
-	//	    	mui.alert(527)
-	//	        mui.currentWebview.opener().show('none');
-	//	        oldback();
-	//	    }, false);
-	//	
-	//	});
-	//var old_back = mui.back
-	//mui.back = function(){
-	//	console.log(558365367658)
-	//  var webview = plus.webview.getWebviewById('index.html'); //假设第一个Webview的id是home
-	//  webview.show();
-	//  old_back();
-	//};
 </script>

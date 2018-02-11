@@ -10,7 +10,9 @@
 			.mui-bar {
 				background-color: #FE7916;
 			}
-			
+			img {
+				width:100%;
+			}
 			header a,
 			.mui-title {
 				color: #FFFFFF;
@@ -72,7 +74,24 @@
 				var self = plus.webview.currentWebview();
 				id = self.code;
 				cate_name = self.cate_name;
-				document.getElementById('cate_name').innerHTML = '农家课堂';
+				switch(cate_name){
+					case 6:
+						cate_name='粮食讲堂';
+						break;
+					case 7:
+						cate_name='经济讲堂';
+						break;
+					case 8:
+						cate_name='食用菌讲堂';
+						break;
+					case 9:
+						cate_name='蔬菜讲堂';
+						break;
+					default:
+						cate_name=cate_name;
+						break
+				}
+				document.getElementById('cate_name').innerHTML = cate_name;
 				console.log(document.getElementById('cate_name').innerHTML)
 				url = url + '/index/article/shows/article_id/' + id;
 				console.log(url)

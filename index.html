@@ -15,18 +15,21 @@
 			header {
 				background: #FE7916!important;
 				height: 60px!important;
+				text-align: center;
 			}
 			
 			header p:first-child {
 				color: #fff;
-				font-size: 18px;
+				font-size: 23px;
 				padding-top: 10px;
 				margin-bottom: 0;
 				font-family: '宋体';
+				letter-spacing: 1px;
 			}
 			
 			header p:last-child {
-				color: #9D632E;
+				color: #F8C5A8;
+				letter-spacing: -0.2px;
 			}
 			
 			.container .banner .banner_img {
@@ -61,26 +64,46 @@
 				text-align: center;
 			}
 			
-			.container .banner .category {
-				margin: 20px 0;
+			.container .banner .circle .scanSy {
+				color: #F07D1D;
 			}
 			
-			.container .banner .category li {
-				border: 1px solid #000;
+			.mui-content .banner .category {
+				margin: 20px 0 0 0;
+				position: absolute;
+				/*bottom: 0;*/
+				right: 0;
+				left: 0;
+			}
+			
+			.mui-content .banner .category .mui-row {
+				display: flex;
+			}
+			
+			.mui-content .banner .category li {
+				/*border: 1px solid #000;*/
 				list-style: none;
-				margin: 0 10px;
-				font-size: 12px;
-				padding: 7px 0.5vw;
-				text-align: center;
-				border-radius: 16px;
+				/*margin: 0 10px;*/
+				/*font-size: 12px;*/
+				padding: 12px 4.2vw;
+				/*text-align: center;*/
+				/*border-radius: 16px;*/
+				flex: 1;
+				background: #FE7916;
+				color: #fff;
+			}
+			
+			.mui-table-view-cell>a:not(.mui-btn) {
+				white-space: normal;
+				font-size: 4vw;
 			}
 		</style>
 	</head>
 
 	<body>
 		<header class="mui-bar mui-bar-nav">
-			<p>延津县电子商务平台</p>
-			<p>Yanjin County E-commerce Platform</p>
+			<p>延津县电商平台</p>
+			<p>Yanjin E-commerce Platform</p>
 		</header>
 		<section class="mui-content container">
 			<div class="banner">
@@ -90,42 +113,37 @@
 				<div class="banner_icons">
 					<img width="100%" src="images/icons.png" />
 				</div>
-				<form id="formSumit" class="mui-input-group" action="husbany.html">
+				<!--<form id="formSumit" class="mui-input-group" action="#">-->
 					<div class="mui-input-row">
-						<input type="text" class="mui-input-clear" id="suyuanCode" placeholder="请输入你想查询的条码" name="suyuanCode">
+						<input type="text" class="mui-input-clear" id="suyuanCode" placeholder="请输入你想查询的条码">
 					</div>
-				</form>
+				<!--</form>-->
 				<div class="circle">
-					<img id="scan" width="80%" src="images/circle.png" />
-				</div>
-				<div class="category">
-					<div class="mui-content">
-						<div class="mui-row">
-							<div class="mui-col-sm-3 mui-col-xs-3">
-								<li class="mui-table-view-cell">
-									<a href="companyShow.html">企业展示</a>
-								</li>
-							</div>
-							<div class="mui-col-sm-3 mui-col-xs-3">
-								<li class="mui-table-view-cell">
-									<a href="tsProducts.html">特色产品</a>
-								</li>
-							</div>
-							<div class="mui-col-sm-3 mui-col-xs-3">
-								<li class="mui-table-view-cell">
-									<a href="newsStatus.html">新闻动态</a>
-								</li>
-							</div>
-							<div class="mui-col-sm-3 mui-col-xs-3">
-								<li class="mui-table-view-cell">
-									<a href="nj_course.html">农科课堂</a>
-								</li>
-							</div>
-						</div>
+					<img id="scan" width="50%" src="images/circle.png" />
+					<div class="scanSy" id="scanSy">
+						<h4>扫码溯源</h4>
 					</div>
 				</div>
+				<div class="category" id="category">
+					<div class="mui-row">
+						<li class="mui-table-view-cell">
+							<a href="companyShow.html">企业展示</a>
+						</li>
+						<li class="mui-table-view-cell">
+							<a href="tsProducts.html">特色产品</a>
+						</li>
+						<li class="mui-table-view-cell">
+							<a href="newsStatus.html">新闻动态</a>
+						</li>
+						<li class="mui-table-view-cell">
+							<a href="nj_course.html">农科课堂</a>
+						</li>
+					</div>
+				</div>
+
 			</div>
 		</section>
+
 	</body>
 
 </html>
@@ -148,42 +166,70 @@
 	}, false)
 
 	function scaned(r, t, f) {
-		console.log(r);
-		console.log(t)
-		var href = 'husbany.html?'+t.split('?')[1];
+		console.log(t);
+		var href = 'husbany.html';
+		console.log('提示' + href)
 		mui.openWindow({
-			id:href,
-			url:href
+
+			url: href,
+			extras: {
+				suyuanCode: t.split('=')[1].replace('"', '')
+			}
 		})
-		console.log(f)
+		console.log(t.split('=')[1].replace('"', ''))
 	}
+
 	//查找溯源信息
 	window.addEventListener('keyup', function(e) {
+
 		var e = e || window.e;
 		if(e && e.keyCode == 13) {
+
 			suyuanCode = suyuan.value;
-			console.log(suyuanCode)
+			console.log("aaaa:"+suyuanCode)
 			if(suyuanCode) {
+//				var page = mui.preload({
+//					url: "husbany.html",
+//					id: "husbany.html",
+//					extras: {
+//						suyuanCode: suyuanCode
+//					}
+//				})
 				//				search.blur();
 				document.activeElement.blur();
-				formSubmit.submit();
+				//				formSubmit.submit();
+				mui.openWindow({
+					id: "husbany.html",
+					url: "husbany.html",
+					extras: {
+						suyuanCode: suyuanCode
+					}
+				})
 			} else {
 				mui.alert('输入溯源码不能为空');
 			}
 		}
 	}, false);
+
+	function hasScrollbar() {
+		return document.body.scrollHeight > (window.innerHeight || document.documentElement.clientHeight);
+	}
+	if(!hasScrollbar()) {
+		console.log('yougundongtiao ')
+		document.getElementById('category').style.bottom = 0;
+	}
 	//打开各个页面
-//	for(var i = 0, len = oLi.length; i < len; i++) {
-//		(function(i) {
-//			oLi[i].addEventListener("click", function() {
-//				console.log(htmlArr[i])
-//				mui.openWindow({
-//					id: htmlArr[i],
-//					url: htmlArr[i]
-//				})
-//			}, false)
-//		})(i)
-//	}
+	//	for(var i = 0, len = oLi.length; i < len; i++) {
+	//		(function(i) {
+	//			oLi[i].addEventListener("click", function() {
+	//				console.log(htmlArr[i])
+	//				mui.openWindow({
+	//					id: htmlArr[i],
+	//					url: htmlArr[i]
+	//				})
+	//			}, false)
+	//		})(i)
+	//	}
 
 	//	mui.plusReady(function(){
 	//		var first = null;

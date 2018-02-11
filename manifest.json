@@ -188,7 +188,7 @@
 					"xxhdpi": ""
 				}
 			}
-		}
+		},"ads":{"rp":false,"splash":false,"push":false,"spot":false},"adid":""
 	},
 	"dependencies": {
 		"pages": {
@@ -200,7 +200,8 @@
 					"tsProducts.html",
 					"companyShow.html",
 					"nj_course.html",
-					"husbany.html"
+					"husbany.html",
+					"index.html"
 				],
 				"priority": 0
 			},
@@ -219,7 +220,8 @@
 				"resources": [],
 				"refer": [
 					"index.html",
-					"tsProductDetail.html"
+					"tsProductDetail.html",
+					"search.html"
 				],
 				"priority": 0
 			},
@@ -227,7 +229,8 @@
 				"resources": [],
 				"refer": [
 					"index.html",
-					"companyShowDetail.html"
+					"companyShowDetail.html",
+					"search.html"
 				],
 				"priority": 0
 			},
@@ -241,7 +244,8 @@
 					"syj_course.html",
 					"sc_course.html",
 					"jj_course.html",
-					"courseSearch.html"
+					"courseSearch.html",
+					"search.html"
 				],
 				"priority": 0
 			},
@@ -305,7 +309,10 @@
 			"courseSearch.html": {
 				"resources": [],
 				"refer": [
-					"nj_course_detail.html"
+					"nj_course_detail.html",
+					"search_result.html",
+					"nj_course.html",
+					"course_search_list.html"
 				],
 				"priority": 0
 			},
@@ -313,6 +320,30 @@
 				"resources": [],
 				"refer": [
 					"courseSearch.html"
+				],
+				"priority": 0
+			},
+			"course_search_list.html": {
+				"resources": [],
+				"refer": [
+					"tsProductDetail.html",
+					"nj_course_detail.html"
+				],
+				"priority": 0
+			},
+			"search.html": {
+				"resources": [],
+				"refer": [
+					"course_search_list.html",
+					"companyShow_search_list.html",
+					"tsProductSearch.html"
+				],
+				"priority": 0
+			},
+			"companyShow_search_list.html": {
+				"resources": [],
+				"refer": [
+					"companyShowDetail.html"
 				],
 				"priority": 0
 			}

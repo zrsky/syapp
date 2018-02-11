@@ -6,7 +6,8 @@
 			"tsProducts.html",
 			"companyShow.html",
 			"nj_course.html",
-			"husbany.html"
+			"husbany.html",
+			"index.html"
 		]
 	},
 	"newsStatus.html": {
@@ -23,13 +24,15 @@
 	"tsProducts.html": {
 		"refer": [
 			"index.html",
-			"tsProductDetail.html"
+			"tsProductDetail.html",
+			"search.html"
 		]
 	},
 	"companyShow.html": {
 		"refer": [
 			"index.html",
-			"companyShowDetail.html"
+			"companyShowDetail.html",
+			"search.html"
 		]
 	},
 	"nj_course.html": {
@@ -40,7 +43,8 @@
 			"syj_course.html",
 			"sc_course.html",
 			"jj_course.html",
-			"courseSearch.html"
+			"courseSearch.html",
+			"search.html"
 		],
 		"resources": [
 			"ls_course.html",
@@ -90,12 +94,33 @@
 	},
 	"courseSearch.html": {
 		"refer": [
-			"nj_course_detail.html"
+			"nj_course_detail.html",
+			"search_result.html",
+			"nj_course.html",
+			"course_search_list.html"
 		]
 	},
 	"nj_course_detail.html": {
 		"refer": [
 			"courseSearch.html"
+		]
+	},
+	"course_search_list.html": {
+		"refer": [
+			"tsProductDetail.html",
+			"nj_course_detail.html"
+		]
+	},
+	"search.html": {
+		"refer": [
+			"course_search_list.html",
+			"companyShow_search_list.html",
+			"tsProductSearch.html"
+		]
+	},
+	"companyShow_search_list.html": {
+		"refer": [
+			"companyShowDetail.html"
 		]
 	}
 }

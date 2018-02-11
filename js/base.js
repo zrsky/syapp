@@ -2,6 +2,14 @@
 var url = 'http://suyuan.test.91xinxiang.com';
 var prefix_url = 'http://suyuan.test.91xinxiang.com';
 
+
+//设置content的margin-top
+				var slider = document.getElementById('mui-slider-item');
+				
+				if(slider && mui.os.ios){
+					var height = slider.offsetHeight+ 50 + 44;
+					document.getElementById('pullrefresh').style.marginTop = height+'px';
+				}
 //往页面中渲染数据
 function render(url, container, html) {
 	var count = 0,
@@ -10,17 +18,22 @@ function render(url, container, html) {
 		time,
 		str = "";
 
-	mui.init({
-		swipeBack: false,
+		mui.init({
+		swipeBack: true,
 		//		keyEventBind: {
 		//			backbutton: false //关闭back按键监听
 		//		},
 		pullRefresh: {
 			container: container,
 			up: {
-				contentrefresh: '正在加载...',
+				height:50,
 				auto: false,
+				contentrefresh: '正在加载...',
+				contentnomore:'没有更多数据了',
 				callback: pullupRefresh
+			},
+			down: {
+				
 			}
 		}
 	});
@@ -37,11 +50,17 @@ function render(url, container, html) {
 			cate_name: ''
 		},
 		created: function() {
+			console.log('这里的container'+container)
 			var that = this;
+		
 			//初始化页面
+			
 			ajax(url, 1, undefined, that);
 		},
-		mounted: function() {},
+		mounted: function() {
+			
+		},
+	
 		methods: {
 			tapEvent: function(event, id, cate_name) {
 				console.log(id)
@@ -73,36 +92,44 @@ function render(url, container, html) {
 				'Content-Type': 'application/json'
 			},
 			success: function(msg) {
+				if(msg.cate_name){
+					vue.cate_name = msg.cate_name
+				}
 
 				//服务器返回响应，根据响应结果，分析是否登录成功；
-				var update_time = "";
+				var update_time = "",slider;
 				console.log(JSON.stringify(msg))
-
+				
 				if(msg.data) {
 					if(msg.data.data) {
 
 						data = msg.data.data;
 						if(data.length == 0) {
-							console.log('看我的正则表达式写对没' + /keyword/gi.test(url))
+							if(!loadingContent){
 							if(/keyword/gi.test(url)) {
 								vue.search = '找不到你搜索的内容';
-								console.log(vue.search)
 							}
-						}
+							}
+						}else{
+								vue.search='';
+							}
 					} else {
 						data = msg.data;
 						if(data.length == 0) {
-							console.log('看我的正则表达式写对没' + /keyword/gi.test(url))
+							if(!loadingContent){
 							if(/keyword/gi.test(url)) {
 								vue.search = '找不到你搜索的内容';
 							}
+							}
+						}else{
+							vue.search = '';
 						}
 
 					}
 
 				} else if(msg) {
 					if(msg.brand) {
-						msg.brand = msg.brand.split(',');
+						msg.brand = msg.brand.toString().split(',');
 					}
 					data = msg;
 
@@ -116,7 +143,6 @@ function render(url, container, html) {
 				if(data instanceof Array) {
 					if(data.length && data[0].thumb) {
 						data.forEach(function(item, index) {
-							console.log(456565463)
 							data[index].thumb = prefix_url + item.thumb;
 						})
 					}
@@ -148,18 +174,15 @@ function render(url, container, html) {
 					that.data = data;
 					if(data.cate_name) {
 						that.cate_name = data.cate_name;
-						console.log('这个cate_name是个啥' + that.cate_name)
 					}
 					if(data.brand) {
-						console.log(data.brand)
-						data.brand = data.brand.split(',');
-						console.log(data.brand)
+						
+						data.brand = data.brand.toString().split(',');
 					}
 
 //					console.log('最终的data' + JSON.stringify(that.data))
 				}
 				console.log('看看变没变' + JSON.stringify(data))
-				console.log('行业动态:' + JSON.stringify(data));
 			},
 			error: function(xhr, type, errorThrown) {
 				//异常处理；
@@ -176,17 +199,18 @@ function render(url, container, html) {
 				mui(container).pullRefresh().endPullupToRefresh();
 			}
 
-			var table = document.body.querySelector('.mui-table-view');
-			var cells = document.body.querySelectorAll('.mui-table-view-cell');
+			
 			vue.data = vue.data.concat(data);
 
 		}, 1000);
 	}
 
 	function pullupRefresh() {
-		page++;
-		ajax(url, page, loadingContent);
-
+		page++;5
+		console.log('多个url:'+url)
+			ajax(url, page, loadingContent);
+		console.log("container:"+container);
+//		mui(container).pullRefresh().refresh(true);
 	}
 
 }

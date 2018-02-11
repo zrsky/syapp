@@ -233,13 +233,21 @@
 	});
 	document.getElementById('searchInput').addEventListener('click', function() {
 		mui.openWindow({
-			url: 'courseSearch.html',
-			id: 'courseSearch.html',
+			url: 'search.html',
+			id: 'search.html',
+			extras: {
+				listUrl:'course_search_list.html'
+			}
 		})
 	}, false)
 
 	var pusb1, pusb2, pusb3, pusb4;
 	mui.plusReady(function() {
+//		var search_result = plus.webview.getWebviewById("search_result.html");
+//		
+//		mui.fire(search_result,'course',{
+//			url:url+'/index/article/index/keyword/'
+//		})
 		//					//预加载页面governmentPolicy.html
 		//					var pusb2 = mui.preload({
 		//					    url:'jj_course.html',

@@ -14,6 +14,10 @@
 				background-color: #FE7916 !important;
 			}
 			
+			img {
+				width: 100%;
+			}
+			
 			.searchInput {
 				line-height: normal;
 			}
@@ -115,7 +119,7 @@
 			}
 			
 			img {
-				width: 120px !important;
+				width: 120px;
 				height: auto !important;
 			}
 			
@@ -127,6 +131,195 @@
 			video {
 				width: 200px!important;
 				height: 120px!important;
+			}
+			
+			.mui-content .make_process p {
+				margin-left: 10px;
+			}
+			
+			.mui-content .make_process p.no_margin {
+				margin-left: 0;
+			}
+			/*图片预览*/
+			
+			.mui-preview-image.mui-fullscreen {
+				position: fixed;
+				z-index: 20;
+				background-color: #000;
+			}
+			
+			.mui-preview-header,
+			.mui-preview-footer {
+				position: absolute;
+				width: 100%;
+				left: 0;
+				z-index: 10;
+			}
+			
+			.mui-preview-header {
+				height: 44px;
+				top: 0;
+			}
+			
+			.mui-preview-footer {
+				height: 50px;
+				bottom: 0px;
+			}
+			
+			.mui-preview-header .mui-preview-indicator {
+				display: block;
+				line-height: 25px;
+				color: #fff;
+				text-align: center;
+				margin: 15px auto 4;
+				width: 70px;
+				background-color: rgba(0, 0, 0, 0.4);
+				border-radius: 12px;
+				font-size: 16px;
+			}
+			
+			.mui-preview-image {
+				display: none;
+				-webkit-animation-duration: 0.5s;
+				animation-duration: 0.5s;
+				-webkit-animation-fill-mode: both;
+				animation-fill-mode: both;
+			}
+			
+			.mui-preview-image.mui-preview-in {
+				-webkit-animation-name: fadeIn;
+				animation-name: fadeIn;
+			}
+			
+			.mui-preview-image.mui-preview-out {
+				background: none;
+				-webkit-animation-name: fadeOut;
+				animation-name: fadeOut;
+			}
+			
+			.mui-preview-image.mui-preview-out .mui-preview-header,
+			.mui-preview-image.mui-preview-out .mui-preview-footer {
+				display: none;
+			}
+			
+			.mui-zoom-scroller {
+				position: absolute;
+				display: -webkit-box;
+				display: -webkit-flex;
+				display: flex;
+				-webkit-box-align: center;
+				-webkit-align-items: center;
+				align-items: center;
+				-webkit-box-pack: center;
+				-webkit-justify-content: center;
+				justify-content: center;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				margin: 0;
+				-webkit-backface-visibility: hidden;
+			}
+			
+			.mui-zoom {
+				-webkit-transform-style: preserve-3d;
+				transform-style: preserve-3d;
+			}
+			
+			.mui-slider .mui-slider-group .mui-slider-item img {
+				width: auto;
+				height: auto;
+				max-width: 100%;
+				max-height: 100%;
+			}
+			
+			.mui-android-4-1 .mui-slider .mui-slider-group .mui-slider-item img {
+				width: 100%;
+			}
+			
+			.mui-android-4-1 .mui-slider.mui-preview-image .mui-slider-group .mui-slider-item {
+				display: inline-table;
+			}
+			
+			.mui-android-4-1 .mui-slider.mui-preview-image .mui-zoom-scroller img {
+				display: table-cell;
+				vertical-align: middle;
+			}
+			
+			.mui-preview-loading {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				top: 0;
+				left: 0;
+				display: none;
+			}
+			
+			.mui-preview-loading.mui-active {
+				display: block;
+			}
+			
+			.mui-preview-loading .mui-spinner-white {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				margin-left: -25px;
+				margin-top: -25px;
+				height: 50px;
+				width: 50px;
+			}
+			
+			.mui-preview-image img.mui-transitioning {
+				-webkit-transition: -webkit-transform 0.5s ease, opacity 0.5s ease;
+				transition: transform 0.5s ease, opacity 0.5s ease;
+			}
+			
+			@-webkit-keyframes fadeIn {
+				0% {
+					opacity: 0;
+				}
+				100% {
+					opacity: 1;
+				}
+			}
+			
+			@keyframes fadeIn {
+				0% {
+					opacity: 0;
+				}
+				100% {
+					opacity: 1;
+				}
+			}
+			
+			@-webkit-keyframes fadeOut {
+				0% {
+					opacity: 1;
+				}
+				100% {
+					opacity: 0;
+				}
+			}
+			
+			@keyframes fadeOut {
+				0% {
+					opacity: 1;
+				}
+				100% {
+					opacity: 0;
+				}
+			}
+			
+			p img {
+				max-width: 100%;
+				height: auto;
+			}
+			/*/图片预览*/
+			
+			[v-cloak] {
+				display: none;
 			}
 		</style>
 	</head>
@@ -144,7 +337,7 @@
 				<img src="image/camera.png" width="34px" height="34px" />
 			</div>-->
 		</header>
-		<div class="mui-content mui-row mui-fullscreen" id="info">
+		<div class="mui-content mui-row mui-fullscreen" id="info" v-cloak>
 			<div class="mui-col-xs-4">
 				<div id="segmentedControls" class="mui-segmented-control mui-segmented-control-inverted mui-segmented-control-vertical">
 					<!--<div id="control_tree">
@@ -168,7 +361,7 @@
 					</div>-->
 				</div>
 			</div>
-			<div id="segmentedControlInfos" class="mui-col-xs-8 syContent" style="border-left: 1px solid #c8c7cc;margin-top:10px;">
+			<div id="segmentedControlInfos" class="mui-col-xs-8 syContent" style="margin-top:10px;">
 				<div id="content_tree1" class="mui-control-content">
 					<!--<div class="title">
 						<span>{{name}}</span>
@@ -180,9 +373,9 @@
 						<ul>
 							<li>
 								<p v-if="name">产品名称：<span>{{name}}</span></p>
-								<p v-if="batch">产品批次：<span>{{batch}}</span></p>
+								<p v-if="batch">生产批次：<span>{{batch}}</span></p>
 								<p v-if="pro_img" class="img_type">
-									产品图片：<br/><img width="120px" :src="pro_img" />
+									产品图片：<br/><img width="120px" :src="pro_img" data-preview-src="" data-preview-group="1" />
 								</p>
 							</li>
 						</ul>
@@ -197,7 +390,7 @@
 								<p v-if="addr">产地：<span>{{addr}}</span></p>
 								<p v-if="birt">种植日期：<span>{{birt}}</span></p>
 								<p v-if="yumiao_img" class="img_type">
-									<img width="120px" :src="yumiao_img" />
+									<img width="120px" :src="yumiao_img" data-preview-src="" data-preview-group="1" />
 								</p>
 							</li>
 						</ul>
@@ -214,7 +407,7 @@
 								<p v-if="soil">土壤：<span>{{soil}}</span></p>
 								<p v-if="water">水质：<span>{{water}}</span></p>
 								<p v-if="base_img" class="img_type">
-									<img width="120px" :src="base_img" />
+									<img width="120px" :src="base_img" data-preview-src="" data-preview-group="1" />
 								</p>
 							</li>
 						</ul>
@@ -248,7 +441,7 @@
 									<p v-if="manure_verify">生产许可证: <span>{{manure_verify}}</span></p>
 									<p v-if="manure_time">生产日期: <span>{{manure_time}}</span></p>
 									<p v-if="manure_img" class="img_type">
-										<img width="120px" :src="manure_img" />
+										<img width="120px" :src="manure_img" data-preview-src="" data-preview-group="1" />
 									</p>
 								</div>
 								<div v-else-if="manure==2">
@@ -258,7 +451,7 @@
 									<p v-if="manure_element">成分：<span>{{manure_element}}</span></p>
 									<p v-if="manure_spe">特征：<span>{{manure_spe}}</span></p>
 									<p v-if="manure_img" class="img_type">
-										<img width="120px" :src="manure_img" />
+										<img width="120px" :src="manure_img" data-preview-src="" data-preview-group="1" />
 									</p>
 								</div>
 							</li>
@@ -295,7 +488,7 @@
 								<p v-if="chem_verify">生产许可证：<span>{{chem_verify}}</span></p>
 								<p v-if="chem_time">生产日期：<span>{{chem_time}}</span></p>
 								<p v-if="chem_img" class="img_type">
-									<img width="120px" :src="chem_img" />
+									<img width="120px" :src="chem_img" data-preview-src="" data-preview-group="1" />
 								</p>
 							</li>
 						</ul>
@@ -307,12 +500,12 @@
 							<li>
 								<p v-if="make_man">管理人：<span>{{make_man}}</span></p>
 								<p v-if="make_room">加工车间：<span>{{make_room}}</span></p>
-								<div v-if="make_process">
-									<p>加工过程：</p>
-									<p class="make_process" v-html="make_process"></p>
+								<div class="make_process make_process_farm" v-if="make_process">
+									<p style="margin-left:-5px" class="no_margin">加工过程：</p>
+									<p class="make_process no_margin" v-html="make_process"></p>
 								</div>
 								<p v-if="product_bag" class="img_type">产品包装：<br>
-									<img width="120px" :src="product_bag" alt="" /></p>
+									<img style="margin-left:10px" width="120px" :src="product_bag" alt="" data-preview-src="" data-preview-group="1" /></p>
 							</li>
 						</ul>
 					</div>
@@ -325,7 +518,7 @@
 								<p v-if="check_name">检验名字：<span>{{check_name}}</span></p>
 								<p v-if="check_unit">检验单位：<span>{{check_unit}}</span></p>
 								<p v-if="check_img" class="img_type">
-									检验数据:<br/><img width="120px" :src="check_img" />
+									检验数据:<br/><img width="120px" :src="check_img" data-preview-src="" data-preview-group="1" />
 								</p>
 							</li>
 						</ul>
@@ -341,14 +534,14 @@
 								<p v-if="verify_long">认证期限: <span>{{verify_long}}</span></p>
 								<p v-if="verify_unit">认证机构: <span>{{verify_unit}}</span></p>
 								<p v-if="verify_img" class="img_type">
-									<img width="120px" :src="verify_img" />
+									<img width="120px" :src="verify_img" data-preview-src="" data-preview-group="1" />
 								</p>
 							</li>
 						</ul>
 					</div>
 				</div>
 			</div>
-			<div id="segmentedControlContents" class="mui-col-xs-8 syContent" style="border-left: 1px solid #c8c7cc;margin-top:10px;" >
+			<div id="segmentedControlContents" class="mui-col-xs-8 syContent" style="margin-top:10px;">
 				<div id="content1" class="mui-control-content">
 					<!--<div class="title">
 						<span>{{name}}</span>
@@ -360,9 +553,9 @@
 						<ul>
 							<li>
 								<p v-if="name">产品名称：<span>{{name}}</span></p>
-								<p v-if="batch">产品批次：<span>{{batch}}</span></p>
+								<p v-if="batch">生产批次：<span>{{batch}}</span></p>
 								<p v-if="pro_img" class="img_type">产品图片:<br>
-									<img :src="pro_img" width="120px" />
+									<img :src="pro_img" width="120px" data-preview-src="" data-preview-group="2" />
 								</p>
 							</li>
 						</ul>
@@ -380,7 +573,7 @@
 								<p v-if="age">年龄：<span>{{age}}</span>岁</span>
 								</p>
 								<p v-if="jiandang_img" class="img_type">
-									<img :src="jiandang_img" width="120px" />
+									<img :src="jiandang_img" width="120px" data-preview-src="" data-preview-group="2" />
 								</p>
 							</li>
 						</ul>
@@ -397,7 +590,7 @@
 									<p v-if="fodder_contain">饲料成分：<span>{{fodder_contain}}</span></p>
 									<p v-if="fodder_spec">饲料特征：<span>{{fodder_spec}}</span></p>
 									<p class="img_type">
-										<img :src="fodder_img" width="120px" />
+										<img :src="fodder_img" width="120px" data-preview-src="" data-preview-group="2" />
 									</p>
 								</div>
 								<div v-else-if="fodder == 2">
@@ -407,7 +600,7 @@
 									<p v-if="fodder_producter">生产厂家：<span>{{fodder_producter}}</span></p>
 									<p v-if="fodder_pro_num">批准文号：<span>{{fodder_pro_num}}</span></p>
 									<p v-if="fodder_img" class="img_type">
-										<img :src="fodder_img" width="120px" />
+										<img :src="fodder_img" width="120px" data-preview-src="" data-preview-group="2" />
 									</p>
 								</div>
 							</li>
@@ -424,7 +617,7 @@
 								<p>检测单位：<span>{{aiti_verify_unit}}</span></p>
 								<p>检测结果：<span>{{aiti_verify_result}}</span></p>
 								<p v-if="aiti_img" class="img_type">
-									<img :src="aiti_img" width="120px" />
+									<img :src="aiti_img" width="120px" data-preview-src="" data-preview-group="2" />
 								</p>
 							</li>
 						</ul>
@@ -435,10 +628,10 @@
 						<ul>
 							<li>
 								<p v-if="make_man">管理人：<span v-html="make_man"></span></p>
-								<p v-if="make_process">加工过程：<span v-html="make_process"></span></p>
 								<p v-if="make_room">加工车间：<span>{{make_room}}</span></p>
+								<p class="make_process make_process_animal" v-if="make_process"><span>加工过程：</span><span v-html="make_process"></span></p>
 								<p v-if="product_bag" class="img_type">
-									产品包装：<br/><img :src="product_bag" width="120px" />
+									产品包装：<br/><img style="margin-left:10px;" :src="product_bag" width="120px" data-preview-src="" data-preview-group="2" />
 								</p>
 							</li>
 						</ul>
@@ -452,7 +645,7 @@
 								<p v-if="check_name">检验名字：<span>{{check_name}}</span></p>
 								<p v-if="check_unit">检验单位：<span>{{check_unit}}</span></p>
 								<p v-if="check_img" class="img_type">
-									检验数据：<br/><img :src="check_img" width="120px" />
+									检验数据：<br/><img :src="check_img" width="120px" data-preview-src="" data-preview-group="2" />
 								</p>
 							</li>
 						</ul>
@@ -468,7 +661,7 @@
 								<p v-if="verify_long">认证期限：<span>{{verify_long}}</span></p>
 								<p v-if="verify_unit">认证机构：<span>{{verify_unit}}</span></p>
 								<p v-if="verify_img" class="img_type">
-									<img :src="verify_img" width="120px" />
+									<img :src="verify_img" width="120px" data-preview-src="" data-preview-group="2" />
 								</p>
 							</li>
 						</ul>
@@ -478,10 +671,13 @@
 		</div>
 		</div>
 		<!-- 百度地图 -->
-		<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=HQThy0ab95GOamZXbsE0Ld9Ucho6LrHb"></script>
+		<!--<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=HQThy0ab95GOamZXbsE0Ld9Ucho6LrHb"></script>-->
 		<script src="js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/mui.zoom.js"></script>
+		<script src="js/mui.previewimage.js"></script>
 		<script src="js/base.js"></script>
 		<script type="text/javascript" charset="utf-8">
+			mui.previewImage();
 			mui.init({
 				swipeBack: true //启用右滑关闭功能
 			});
@@ -494,12 +690,22 @@
 				console.log(id)
 				url = url + '/index/products/shows/product_id/' + id;
 				console.log(url)
-//				render(url)
-
+				//				render(url)
+				//创建等待框
+				var w = plus.nativeUI.showWaiting('加载中...');
 				var html;
+				//给加工过程图片添加属性
+				function addAttribute(ele, group) {
+					ele.forEach(function(item, index) {
+
+						item.dataset.previewSrc = '';
+						item.dataset.previewGroup = group;
+					})
+				}
 				var data_detail = new Vue({
 					el: '#info',
 					data: {
+						flag: false,
 						base_img: '',
 						name: '', //产品名称
 						batch: '', //产品批次
@@ -576,8 +782,9 @@
 						make_room: '', //加工车间
 						make_process: '' //加工过程
 					},
-					mounted: function(){
-						console.log('不知道有值没有'+this.name);
+					mounted: function() {
+						console.log('不知道有值没有' + this.aiti_img);
+
 					}
 				});
 				var controls = document.getElementById("segmentedControls");
@@ -587,6 +794,7 @@
 				var tree_num = document.getElementById('tree_num');
 				var animal_num = document.getElementById('animal_num');
 				var html = [];
+				var processImg_farm, processImg_animal;
 				var originId = window.location.search.split("=")[1];
 				//			var originId = "DhE3S56DW9g";
 				//			alert(originId);
@@ -636,204 +844,219 @@
 				//				search_result();
 				//			}
 				function search_result() {
-//					tree_num.innerHTML = originId;
-//					animal_num.innerHTML = originId;
+					//					tree_num.innerHTML = originId;
+					//					animal_num.innerHTML = originId;
 					var longitude, latitude;
 					//				var mask = mui.createMask(); //遮罩层
-					var geolocation = new BMap.Geolocation();
+					//					var geolocation = new BMap.Geolocation();
 					//				plus.nativeUI.showWaiting();
 					//				mask.show();
-					geolocation.getCurrentPosition(function(r) {
-						longitude = r.longitude;
-						latitude = r.latitude;
-						var params = {
-							id: originId,
-							lng: longitude,
-							lat: latitude
-						}
-						//b5bNzbWKs4XkU 畜牧  a6iqNmBMiBog6种植
-						console.log('params:' + JSON.stringify(params));
-						mui.ajax(url, {
-							data: params,
-							dataType: 'json', //服务器返回json格式数据
-							type: 'get', //HTTP请求类型
-							timeout: 10000, //超时时间设置为10秒；
-							success: function(res) {
-								//服务器返回响应，根据响应结果，分析是否登录成功；
-								console.log("data:" + JSON.stringify(res));
-								var obj_data = res;
-//								if(res.status == 0) {
-									//								plus.nativeUI.closeWaiting();
-									//								mask.close();
-									console.log("name:" + obj_data.name);
-									data_detail.$nextTick(function() {
-										console.log('eeee');
-										equal();
-									})
-									equal();
-								function equal() {
-									if(obj_data.base_img) {
-										data_detail.base_img = img_url + obj_data.base_img;
-									}
-									data_detail.name = obj_data.name;
-									data_detail.batch = obj_data.batch;
-									data_detail.introduce = obj_data.introduce;
-									if(obj_data.pro_img) {
-										data_detail.pro_img = img_url + obj_data.pro_img;
-									}
-									data_detail.jiandang_man = obj_data.jiandang_man;
-									data_detail.birt = obj_data.birt;
-									data_detail.birinfo = obj_data.birinfo;
-									data_detail.breed = obj_data.breed;
-									data_detail.sex = obj_data.sex;
-									data_detail.age = obj_data.age;
-									if(obj_data.jiandang_img) {
-										data_detail.jiandang_img = img_url + obj_data.jiandang_img;
-									}
-									data_detail.fodder = obj_data.fodder;
-									data_detail.fodder_man = obj_data.fodder_man;
-									data_detail.fodder_make_method = obj_data.fodder_make_method;
-									data_detail.fodder_contain = obj_data.fodder_contain;
-									data_detail.fodder_spec = obj_data.fodder_spec;
-									data_detail.fodder_name = obj_data.fodder_name;
-									data_detail.fodder_producter = obj_data.fodder_producter;
-									data_detail.fodder_pro_num = obj_data.fodder_pro_num;
-									if(obj_data.fodder_img) {
-										data_detail.fodder_img = img_url + obj_data.fodder_img;
-									}
-									data_detail.aiti_man = obj_data.aiti_man;
-									data_detail.sampling = obj_data.sampling;
-									data_detail.ring_num = obj_data.ring_num;
-									data_detail.aiti_verify_unit = obj_data.aiti_verify_unit;
-									data_detail.aiti_verify_result = obj_data.aiti_verify_result;
-									if(obj_data.aiti_bag) {
-										data_detail.aiti_img = img_url + obj_data.aiti_img;
-									}
-									data_detail.make_man = obj_data.make_man;
-									data_detail.make_process = obj_data.make_process;
-									data_detail.make_room = obj_data.make_room;
-									if(obj_data.product_bag) {
-										data_detail.product_bag = img_url + obj_data.product_bag;
-									}
-									data_detail.check_man = obj_data.check_man;
-									data_detail.check_name = obj_data.check_name;
-									data_detail.check_unit = obj_data.check_unit;
-									if(obj_data.check_img) {
-										data_detail.check_img = img_url + obj_data.check_img;
-									}
-									data_detail.verify_man = obj_data.verify_man;
-									data_detail.verify_num = obj_data.verify_num;
-									data_detail.verify_time = obj_data.verify_time;
-									data_detail.verify_long = obj_data.verify_long;
-									data_detail.verify_unit = obj_data.verify_unit;
-									if(obj_data.verify_img) {
-										data_detail.verify_img = img_url + obj_data.verify_img;
-									}
-									data_detail.yumiaoren = obj_data.yumiaoren;
-									data_detail.addr = obj_data.addr;
-									if(obj_data.yumiao_img) {
-										data_detail.yumiao_img = img_url + obj_data.yumiao_img;
-									}
-									data_detail.baseman = obj_data.baseman;
-									data_detail.base_name = obj_data.base_name;
-									data_detail.manage_style = obj_data.manage_style;
-									data_detail.area = obj_data.area;
-									data_detail.soil = obj_data.soil;
-									data_detail.water = obj_data.water;
-									data_detail.manure_man = obj_data.manure_man;
-									data_detail.manure = obj_data.manure;
-									data_detail.manure_type = obj_data.manure_type;
-									data_detail.manure_type2 = obj_data.manure_type2;
-									data_detail.manure_verify = obj_data.manure_verify;
-									data_detail.manure_time = obj_data.manure_time;
-									if(obj_data.manure_img) {
-										data_detail.manure_img = img_url + obj_data.manure_img;
-									}
-									data_detail.breed = obj_data.breed;
-									data_detail.manure_method = obj_data.manure_method;
-									data_detail.manure_element = obj_data.manure_element;
-									data_detail.manure_spe = obj_data.manure_spe;
-									if(obj_data.manure_img) {
-										data_detail.manure_img = img_url + obj_data.manure_img;
-									}
-									data_detail.chem_man = obj_data.chem_man;
-									data_detail.chemical_name = obj_data.chemical_name;
-									data_detail.chemical_obj = obj_data.chemical_obj;
-									data_detail.chem_use_dose = obj_data.chem_use_dose;
-									data_detail.chem_use_area = obj_data.chem_use_area;
-									data_detail.chem_type = obj_data.chem_type;
-									data_detail.chem_water_type = obj_data.chem_water_type;
-									data_detail.chem_verify = obj_data.chem_verify;
-									data_detail.chem_time = obj_data.chem_time;
-									if(obj_data.chem_img) {
-										data_detail.chem_img = img_url + obj_data.chem_img;
-									}
-									data_detail.make_man = obj_data.make_man;
-									data_detail.make_room = obj_data.make_room;
-									data_detail.make_process = obj_data.make_process;
+					//					geolocation.getCurrentPosition(function(r) {
+					//						longitude = r.longitude;
+					//						latitude = r.latitude;
+					var params = {
+						id: originId,
+
+					}
+					//b5bNzbWKs4XkU 畜牧  a6iqNmBMiBog6种植
+					console.log('params:' + JSON.stringify(params));
+					mui.ajax(url, {
+						data: params,
+						dataType: 'json', //服务器返回json格式数据
+						type: 'get', //HTTP请求类型
+						timeout: 10000, //超时时间设置为10秒；
+						success: function(res) {
+							console.log('不会是：' + img_url + res.aiti_img)
+							w.close();
+
+							infos.style.borderLeft = '1px solid #c8c7cc';
+							contents.style.borderLeft = '1px solid #c8c7cc';
+							data_detail.flag = true;
+							//服务器返回响应，根据响应结果，分析是否登录成功；
+							console.log("data:" + JSON.stringify(res));
+							var obj_data = res;
+							//								if(res.status == 0) {
+							//								plus.nativeUI.closeWaiting();
+							//								mask.close();
+							console.log("name:" + obj_data.name);
+							data_detail.$nextTick(function() {
+								console.log('eeee');
+								equal();
+							})
+							equal();
+
+							function equal() {
+								if(obj_data.base_img) {
+									data_detail.base_img = img_url + obj_data.base_img;
 								}
-									console.log('不知道有值没有566'+data_detail.name);
-									if(html.length > 0) {
-										html = [];
-									}
-									var controlsDiv = document.querySelectorAll("#segmentedControlInfos > div li");
-									//								var controlsSpan = controlsDiv.children('p span');
-									var contentsDiv = document.querySelectorAll("#segmentedControlContents > div li");
-									//								var contentsSpan = contentsDiv.children('p span');
-									//								没有的隐藏
-									//								for(var i=0,len=controlsDiv.length;i<len;i++){
-									//									if(!controlsDiv[i].children[0]){
-									////										m.splice(i,1);
-									//									}
-									//									console.log("m变成啥样了"+m)
-									//								}
-									//								for(var i=0,len=contentsDiv.length;i<len;i++){
-									//									if(!contentsDiv[i].children[0]){
-									////										m1.splice(i,1);
-									//									}
-									//									console.log("m1变成啥样了"+m1)
-									//								}
-
-									if(obj_data.product_cate_id == 2) {
-										console.log("html2" + html);
-										infos.style.display = 'none';
-										for(var i = 1; i < m.length + 1; i++) {
-											html.push('<a class="mui-control-item" id="category" href="#content' + i + '">' + m[i - 1] + '</a>');
-										}
-									} else {
-										console.log("html1" + html);
-										contents.style.display = 'none';
-										for(var i = 1; i < m1.length + 1; i++) {
-											html.push('<a class="mui-control-item" id="category" href="#content_tree' + i + '">' + m1[i - 1] + '</a>');
-										}
-									}
-									//
-
-									console.log("html:" + html)
-									controls.innerHTML = html.join('');
-
-									//默认选中第一个
-									controls.querySelector('.mui-control-item').classList.add('mui-active');
-									contents.querySelector('.mui-control-content').classList.add('mui-active');
-									infos.querySelector('.mui-control-content').classList.add('mui-active');
-									console.log("img_type:" + document.querySelectorAll('.img_type').length);
-									var arr = document.querySelectorAll('.img_type');
-									for(var i = 0; i < arr.length; i++) {
-										arr[i].addEventListener('tap', function() {
-											console.log('aaa');
-										})
-									}
-									//								mui('.img_type')[0].addEventListener('tap',function() {
-									//									console.log('aaa');
-									//								})
-//								}
-							},
-							error: function(xhr, type, errorThrown) {
-								//异常处理；
-								console.log(xhr);
+								data_detail.name = obj_data.name;
+								data_detail.batch = obj_data.batch;
+								data_detail.introduce = obj_data.introduce;
+								if(obj_data.pro_img) {
+									data_detail.pro_img = img_url + obj_data.pro_img;
+								}
+								data_detail.jiandang_man = obj_data.jiandang_man;
+								data_detail.birt = obj_data.birt;
+								data_detail.birinfo = obj_data.birinfo;
+								data_detail.breed = obj_data.breed;
+								data_detail.sex = obj_data.sex;
+								data_detail.age = obj_data.age;
+								if(obj_data.jiandang_img) {
+									data_detail.jiandang_img = img_url + obj_data.jiandang_img;
+								}
+								data_detail.fodder = obj_data.fodder;
+								data_detail.fodder_man = obj_data.fodder_man;
+								data_detail.fodder_make_method = obj_data.fodder_make_method;
+								data_detail.fodder_contain = obj_data.fodder_contain;
+								data_detail.fodder_spec = obj_data.fodder_spec;
+								data_detail.fodder_name = obj_data.fodder_name;
+								data_detail.fodder_producter = obj_data.fodder_producter;
+								data_detail.fodder_pro_num = obj_data.fodder_pro_num;
+								if(obj_data.fodder_img) {
+									data_detail.fodder_img = img_url + obj_data.fodder_img;
+								}
+								data_detail.aiti_man = obj_data.aiti_man;
+								data_detail.sampling = obj_data.sampling;
+								data_detail.ring_num = obj_data.ring_num;
+								data_detail.aiti_verify_unit = obj_data.aiti_verify_unit;
+								data_detail.aiti_verify_result = obj_data.aiti_verify_result;
+								if(obj_data.aiti_img) {
+									data_detail.aiti_img = img_url + obj_data.aiti_img;
+									console.log('别再和我开玩笑了' + data_detail.aiti_img)
+								}
+								data_detail.make_man = obj_data.make_man;
+								data_detail.make_process = obj_data.make_process;
+								data_detail.make_room = obj_data.make_room;
+								if(obj_data.product_bag) {
+									data_detail.product_bag = img_url + obj_data.product_bag;
+								}
+								data_detail.check_man = obj_data.check_man;
+								data_detail.check_name = obj_data.check_name;
+								data_detail.check_unit = obj_data.check_unit;
+								if(obj_data.check_img) {
+									data_detail.check_img = img_url + obj_data.check_img;
+								}
+								data_detail.verify_man = obj_data.verify_man;
+								data_detail.verify_num = obj_data.verify_num;
+								data_detail.verify_time = obj_data.verify_time;
+								data_detail.verify_long = obj_data.verify_long;
+								data_detail.verify_unit = obj_data.verify_unit;
+								if(obj_data.verify_img) {
+									data_detail.verify_img = img_url + obj_data.verify_img;
+								}
+								data_detail.yumiaoren = obj_data.yumiaoren;
+								data_detail.addr = obj_data.addr;
+								if(obj_data.yumiao_img) {
+									data_detail.yumiao_img = img_url + obj_data.yumiao_img;
+								}
+								data_detail.baseman = obj_data.baseman;
+								data_detail.base_name = obj_data.base_name;
+								data_detail.manage_style = obj_data.manage_style;
+								data_detail.area = obj_data.area;
+								data_detail.soil = obj_data.soil;
+								data_detail.water = obj_data.water;
+								data_detail.manure_man = obj_data.manure_man;
+								data_detail.manure = obj_data.manure;
+								data_detail.manure_type = obj_data.manure_type;
+								data_detail.manure_type2 = obj_data.manure_type2;
+								data_detail.manure_verify = obj_data.manure_verify;
+								data_detail.manure_time = obj_data.manure_time;
+								if(obj_data.manure_img) {
+									data_detail.manure_img = img_url + obj_data.manure_img;
+								}
+								data_detail.breed = obj_data.breed;
+								data_detail.manure_method = obj_data.manure_method;
+								data_detail.manure_element = obj_data.manure_element;
+								data_detail.manure_spe = obj_data.manure_spe;
+								if(obj_data.manure_img) {
+									data_detail.manure_img = img_url + obj_data.manure_img;
+								}
+								data_detail.chem_man = obj_data.chem_man;
+								data_detail.chemical_name = obj_data.chemical_name;
+								data_detail.chemical_obj = obj_data.chemical_obj;
+								data_detail.chem_use_dose = obj_data.chem_use_dose;
+								data_detail.chem_use_area = obj_data.chem_use_area;
+								data_detail.chem_type = obj_data.chem_type;
+								data_detail.chem_water_type = obj_data.chem_water_type;
+								data_detail.chem_verify = obj_data.chem_verify;
+								data_detail.chem_time = obj_data.chem_time;
+								if(obj_data.chem_img) {
+									data_detail.chem_img = img_url + obj_data.chem_img;
+								}
+								data_detail.make_man = obj_data.make_man;
+								data_detail.make_room = obj_data.make_room;
+								data_detail.make_process = obj_data.make_process;
 							}
-						});
-					})
+							console.log('不知道有值没有566' + data_detail.name);
+							if(html.length > 0) {
+								html = [];
+							}
+							var controlsDiv = document.querySelectorAll("#segmentedControlInfos > div li");
+							//								var controlsSpan = controlsDiv.children('p span');
+							var contentsDiv = document.querySelectorAll("#segmentedControlContents > div li");
+							//								var contentsSpan = contentsDiv.children('p span');
+							//								没有的隐藏
+							//								for(var i=0,len=controlsDiv.length;i<len;i++){
+							//									if(!controlsDiv[i].children[0]){
+							////										m.splice(i,1);
+							//									}
+							//									console.log("m变成啥样了"+m)
+							//								}
+							//								for(var i=0,len=contentsDiv.length;i<len;i++){
+							//									if(!contentsDiv[i].children[0]){
+							////										m1.splice(i,1);
+							//									}
+							//									console.log("m1变成啥样了"+m1)
+							//								}
+
+							if(obj_data.product_cate_id == 2) {
+								console.log("html2" + html);
+								infos.style.display = 'none';
+								for(var i = 1; i < m.length + 1; i++) {
+									html.push('<a class="mui-control-item" id="category" href="#content' + i + '">' + m[i - 1] + '</a>');
+								}
+							} else {
+								console.log("html1" + html);
+								contents.style.display = 'none';
+								for(var i = 1; i < m1.length + 1; i++) {
+									html.push('<a class="mui-control-item" id="category" href="#content_tree' + i + '">' + m1[i - 1] + '</a>');
+								}
+							}
+							//
+
+							console.log("html:" + html)
+							controls.innerHTML = html.join('');
+
+							//默认选中第一个
+							controls.querySelector('.mui-control-item').classList.add('mui-active');
+							contents.querySelector('.mui-control-content').classList.add('mui-active');
+							infos.querySelector('.mui-control-content').classList.add('mui-active');
+							console.log("img_type:" + document.querySelectorAll('.img_type').length);
+							var arr = document.querySelectorAll('.img_type');
+							for(var i = 0; i < arr.length; i++) {
+								arr[i].addEventListener('tap', function() {
+									console.log('aaa');
+								})
+							}
+							//								mui('.img_type')[0].addEventListener('tap',function() {
+							//									console.log('aaa');
+							//								})
+							//								}
+							setTimeout(function() {
+								//加工过程图片添加属性
+								processImg_farm = document.querySelectorAll('.make_process_farm img');
+								processImg_animal = document.querySelectorAll('.make_process_animal img');
+								console.log(processImg_farm.length);
+								addAttribute(processImg_farm, '1');
+								addAttribute(processImg_farm, '2');
+							}, 1000)
+						},
+						error: function(xhr, type, errorThrown) {
+							//异常处理；
+							console.log(xhr);
+						}
+					});
+					//					})
 				}
 			})
 		</script>
