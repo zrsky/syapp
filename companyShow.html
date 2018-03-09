@@ -10,17 +10,18 @@
 	</head>
 	<style type="text/css">
 		header {
-			z-index:101!important;
+			z-index: 101!important;
 		}
+		
 		.mui-content .tsproduct_title {
 			background: #FE7916;
-			height: 50px;
+			height: 12;
 			position: relative;
 			z-index: 100;
 		}
 		
 		.mui-content .tsproduct_title p {
-			line-height: 50px;
+			line-height: 12vw;
 			color: #fff;
 			text-align: center;
 			font-size: 16px;
@@ -93,7 +94,8 @@
 			<div class="tsproduct_title">
 				<p>企业展示</p>
 			</div>
-			<div id="pullrefresh" class=" mui-scroll-wrapper">
+			<!--ios-->
+			<div id="pullrefresh" class="mui-scroll-wrapper" style="margin-top: 72vw;">
 				<div class="mui-scroll" id="scrollWrapper">
 					<div id="app" v-cloak>
 						<div class="mui-table-view mui-table-view-chevron products_wrapper" style="background:none;border-bottom: none;">
@@ -110,17 +112,36 @@
 					</div>
 				</div>
 			</div>
+			<!--android-->
+			<!--<div id="app" v-cloak>
+				<div id="pullrefresh" class=" mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<div class="mui-table-view mui-table-view-chevron products_wrapper" style="background:none;border-bottom: none;">
+							<div class="product" v-for="value in data" ref="oLi" @tap="tapEvent($event,value.cid)">
+								<a href="#">
+									<img width="100%" height="80px" :src="value.thumb" />
+									<p class="pro_title" ref="title">{{value.organ_name}}</p>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="searchResult">
+					{{search}}
+				</div>
+			</div>-->
+			<!--android-->
 		</div>
 	</body>
 
 </html>
-<script src="js/mui.min.js"></script>
 
+<script src="js/mui.min.js"></script>
 <script src="js/base.js"></script>
 <!--<script src="js/newsStatus.js"></script>-->
 <script type="text/javascript">
 	//设置content的margin-top
-				
+	console.log('啥问题啊')
 	//	mui.init({
 	//		swipeBack: false,
 	//		pullRefresh: {
@@ -132,12 +153,13 @@
 	//			}
 	//		}
 	//	});
-	var slider = document.getElementById('slider');
-				
-				if(slider && mui.os.ios){
-					var height = slider.offsetHeight+ 50 + 44;
-					document.getElementById('pullrefresh').style.marginTop = height+'px';
-				}
+	//	var slider = document.getElementById('slider');
+	//				
+	//				if(slider && mui.os.ios){
+	//					var height = slider.offsetHeight+ 50 + 44;
+	//					document.getElementById('pullrefresh').style.marginTop = height+'px';
+	//					document.getElementById('pullrefresh').style.display = 'block';
+	//				}
 	var url_ts = url + '/index/organs/index',
 		search = document.getElementById('search');
 	search.addEventListener('tap', function() {
@@ -195,23 +217,22 @@
 	render(url_ts, '#pullrefresh', 'companyShowDetail.html');
 
 	//轮播图定时自动轮播
-	var slider = mui("#slider");
-	slider.slider({
-		interval: 5000
-	});
+	//	var slider = mui("#slider");
+	//	slider.slider({
+	//		interval: 5000
+	//	});
 
 	//搜索
-
+	var currentPage;
 	//返回
-	//	mui.plusReady(function() {
-	//		currentPage = plus.webview.getWebviewById('tsProducts.html');
-	//		console.log('当前页面'+ page)
-	//	})
-	//	var old_back = mui.back;
-	//	mui.back = function() {
-	//		if(currentPage != null) {
-	//			currentPage.close();
-	//		}
-	//		old_back();
-	//	}
+	mui.plusReady(function() {
+		currentPage = plus.webview.getWebviewById('companyShow.html');
+	})
+	var old_back = mui.back;
+	mui.back = function() {
+		if(currentPage != null) {
+			currentPage.close();
+		}
+		old_back();
+	}
 </script>

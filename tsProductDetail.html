@@ -385,7 +385,7 @@
 					<div class="detail">
 						<ul>
 							<li>
-								<p v-if="yumiaoren">管理人：<span>{{yumiaoren}}</span></p>
+								<p v-if="yumiaoren">管理人员：<span>{{yumiaoren}}</span></p>
 								<p v-if="breed">品种：<span>{{breed}}</span></p>
 								<p v-if="addr">产地：<span>{{addr}}</span></p>
 								<p v-if="birt">种植日期：<span>{{birt}}</span></p>
@@ -400,7 +400,7 @@
 					<div class="detail">
 						<ul>
 							<li>
-								<p v-if="baseman">管理人：<span>{{baseman}}</span></p>
+								<p v-if="baseman">管理人员：<span>{{baseman}}</span></p>
 								<p v-if="base_name">基地名称：<span>{{base_name}}</span></p>
 								<p v-if="manage_style">管理形式：<span>{{manage_style}}</span></p>
 								<p v-if="area">面积：<span>{{area}}</span></p>
@@ -418,7 +418,7 @@
 						<ul>
 							<li>
 								<div v-if="manure==1">
-									<p v-if="manure_man">管理人：<span>{{manure_man}}</span></p>
+									<p v-if="manure_man">管理人员：<span>{{manure_man}}</span></p>
 									<p>肥料类型：<span>化学肥料</span></p>
 									<p v-if="manure_type==1">
 										化肥类型: <span>单质</span>
@@ -445,11 +445,11 @@
 									</p>
 								</div>
 								<div v-else-if="manure==2">
-									<p v-if="manure_man">管理人：<span>{{manure_man}}</span></p>
-									<p>肥料类型: <span>农家肥料</span></p>
+									<p v-if="manure_man">管理人员：<span>{{manure_man}}</span></p>
+									<p>肥料类型: <span>农家肥</span></p>
 									<p v-if="manure_method">制作方法：<span>{{manure_method}}</span></p>
-									<p v-if="manure_element">成分：<span>{{manure_element}}</span></p>
-									<p v-if="manure_spe">特征：<span>{{manure_spe}}</span></p>
+									<p v-if="manure_element">成份：<span>{{manure_element}}</span></p>
+									<p v-if="manure_spe">特性：<span>{{manure_spe}}</span></p>
 									<p v-if="manure_img" class="img_type">
 										<img width="120px" :src="manure_img" data-preview-src="" data-preview-group="1" />
 									</p>
@@ -462,7 +462,7 @@
 					<div class="detail">
 						<ul>
 							<li>
-								<p v-if="chem_man">管理人：<span>{{chem_man}}</span></p>
+								<p v-if="chem_man">管理人员：<span>{{chem_man}}</span></p>
 								<p v-if="chemical_name">农药名称：<span>{{chemical_name}}</span></p>
 								<p v-if="chemical_obj">防治对象：<span>{{chemical_obj}}</span></p>
 								<p v-if="chem_use_dose">用药剂量：<span>{{chem_use_dose}}</span></p>
@@ -480,7 +480,7 @@
 								<p v-else-if="chem_water_type==4">农药剂型: <span>颗粒剂</span></p>
 								<p v-else-if="chem_water_type==5">农药剂型: <span>悬浮剂</span></p>
 								<p v-else-if="chem_water_type==6">农药剂型: <span>烟剂</span></p>
-								<p v-else-if="chem_water_type==7">农药剂型: <span>水分散剂</span></p>
+								<p v-else-if="chem_water_type==7">农药剂型: <span>水份散剂</span></p>
 								<p v-else-if="chem_water_type==8">农药剂型: <span>缓蚀剂</span></p>
 								<p v-else-if="chem_water_type==9">农药剂型: <span>水剂</span></p>
 								<p v-else-if="chem_water_type==10">农药剂型: <span>水溶剂</span></p>
@@ -498,7 +498,7 @@
 					<div class="detail">
 						<ul>
 							<li>
-								<p v-if="make_man">管理人：<span>{{make_man}}</span></p>
+								<p v-if="make_man">管理人员：<span>{{make_man}}</span></p>
 								<p v-if="make_room">加工车间：<span>{{make_room}}</span></p>
 								<div class="make_process make_process_farm" v-if="make_process">
 									<p style="margin-left:-5px" class="no_margin">加工过程：</p>
@@ -514,11 +514,11 @@
 					<div class="detail">
 						<ul>
 							<li>
-								<p v-if="check_man">管理人：<span>{{check_man}}</span></p>
+								<p v-if="check_man">管理人员：<span>{{check_man}}</span></p>
 								<p v-if="check_name">检验名字：<span>{{check_name}}</span></p>
 								<p v-if="check_unit">检验单位：<span>{{check_unit}}</span></p>
 								<p v-if="check_img" class="img_type">
-									检验数据:<br/><img width="120px" :src="check_img" data-preview-src="" data-preview-group="1" />
+									检验结果:<br/><img width="120px" :src="check_img" data-preview-src="" data-preview-group="1" />
 								</p>
 							</li>
 						</ul>
@@ -528,7 +528,7 @@
 					<div class="detail">
 						<ul>
 							<li>
-								<p v-if="verify_man">管理人：<span>{{verify_man}}</span></p>
+								<p v-if="verify_man">管理人员：<span>{{verify_man}}</span></p>
 								<p v-if="verify_num">认证编号：<span>{{verify_num}}</span></p>
 								<p v-if="verify_time">认证日期：<span>{{verify_time}}</span></p>
 								<p v-if="verify_long">认证期限: <span>{{verify_long}}</span></p>
@@ -565,12 +565,12 @@
 					<div class="detail">
 						<ul>
 							<li>
-								<p v-if="jiandang_man">管理人：<span>{{jiandang_man}}</span></p>
+								<p v-if="jiandang_man">管理人员：<span>{{jiandang_man}}</span></p>
 								<p v-if="birt">出生日期：<span>{{birt}}</span></p>
 								<p v-if="birinfo">出生记录：<span>{{birinfo}}</span></p>
 								<p v-if="breed">品种类型：<span>{{breed}}</span></p>
 								<p v-if="sex">性别：<span>{{sex==1?'雄性':'雌性'}}</span></p>
-								<p v-if="age">年龄：<span>{{age}}</span>岁</span>
+								<p v-if="age>=0">年龄：<span>{{age}}</span>岁</span>
 								</p>
 								<p v-if="jiandang_img" class="img_type">
 									<img :src="jiandang_img" width="120px" data-preview-src="" data-preview-group="2" />
@@ -584,17 +584,17 @@
 						<ul>
 							<li>
 								<div v-if="fodder != 2">
-									<p v-if="fodder_man">管理人：<span>{{fodder_man}}</span></p>
+									<p v-if="fodder_man">管理人员：<span>{{fodder_man}}</span></p>
 									<p v-if="fodder">饲料类型：<span>{{fodder == 2?'普通饲料':'自制饲料'}}</span></p>
 									<p v-if="fodder_make_method">制作方法：<span>{{fodder_make_method}}</span></p>
-									<p v-if="fodder_contain">饲料成分：<span>{{fodder_contain}}</span></p>
+									<p v-if="fodder_contain">饲料成份：<span>{{fodder_contain}}</span></p>
 									<p v-if="fodder_spec">饲料特征：<span>{{fodder_spec}}</span></p>
 									<p class="img_type">
 										<img :src="fodder_img" width="120px" data-preview-src="" data-preview-group="2" />
 									</p>
 								</div>
 								<div v-else-if="fodder == 2">
-									<p v-if="fodder_man">管理人：<span>{{fodder_man}}</span></p>
+									<p v-if="fodder_man">管理人员：<span>{{fodder_man}}</span></p>
 									<p v-if="fodder">饲料类型：<span>{{fodder == 2?'普通饲料':'自制饲料'}}</span></p>
 									<p v-if="fodder_name">饲料名称：<span>{{fodder_name}}</span></p>
 									<p v-if="fodder_producter">生产厂家：<span>{{fodder_producter}}</span></p>
@@ -611,7 +611,7 @@
 					<div class="detail">
 						<ul>
 							<li>
-								<p>管理人：<span>{{aiti_man}}</span></p>
+								<p>管理人员：<span>{{aiti_man}}</span></p>
 								<p>采样日期：<span>{{sampling}}</span></p>
 								<p>圈舍号：<span>{{ring_num}}</span></p>
 								<p>检测单位：<span>{{aiti_verify_unit}}</span></p>
@@ -627,7 +627,7 @@
 					<div class="detail">
 						<ul>
 							<li>
-								<p v-if="make_man">管理人：<span v-html="make_man"></span></p>
+								<p v-if="make_man">管理人员：<span v-html="make_man"></span></p>
 								<p v-if="make_room">加工车间：<span>{{make_room}}</span></p>
 								<p class="make_process make_process_animal" v-if="make_process"><span>加工过程：</span><span v-html="make_process"></span></p>
 								<p v-if="product_bag" class="img_type">
@@ -641,11 +641,11 @@
 					<div class="detail">
 						<ul>
 							<li>
-								<p v-if="check_man">管理人：<span>{{check_man}}</span></p>
+								<p v-if="check_man">管理人员：<span>{{check_man}}</span></p>
 								<p v-if="check_name">检验名字：<span>{{check_name}}</span></p>
 								<p v-if="check_unit">检验单位：<span>{{check_unit}}</span></p>
 								<p v-if="check_img" class="img_type">
-									检验数据：<br/><img :src="check_img" width="120px" data-preview-src="" data-preview-group="2" />
+									检验结果：<br/><img :src="check_img" width="120px" data-preview-src="" data-preview-group="2" />
 								</p>
 							</li>
 						</ul>
@@ -655,7 +655,7 @@
 					<div class="detail">
 						<ul>
 							<li>
-								<p v-if="verify_man">管理人：<span>{{verify_man}}</span></p>
+								<p v-if="verify_man">管理人员：<span>{{verify_man}}</span></p>
 								<p v-if="verify_num">认证编号：<span>{{verify_num}}</span></p>
 								<p v-if="verify_time">认证日期：<span>{{verify_time}}</span></p>
 								<p v-if="verify_long">认证期限：<span>{{verify_long}}</span></p>
@@ -678,9 +678,6 @@
 		<script src="js/base.js"></script>
 		<script type="text/javascript" charset="utf-8">
 			mui.previewImage();
-			mui.init({
-				swipeBack: true //启用右滑关闭功能
-			});
 			var url = url,
 				id;
 			var img_url = url;
@@ -696,11 +693,10 @@
 				var html;
 				//给加工过程图片添加属性
 				function addAttribute(ele, group) {
-					ele.forEach(function(item, index) {
-
-						item.dataset.previewSrc = '';
-						item.dataset.previewGroup = group;
-					})
+					for(var i = 0, len = ele.length; i < len; i++) {
+						ele[i].setAttribute('data-preview-src', '');
+						ele[i].setAttribute('data-preview-group', group);
+					}
 				}
 				var data_detail = new Vue({
 					el: '#info',
@@ -711,7 +707,7 @@
 						batch: '', //产品批次
 						introduce: '', //产品简介
 						pro_img: '', //产品图片
-						jiandang_man: '', //管理人
+						jiandang_man: '', //管理人员
 						birt: '', //出生日期/种植日期
 						birinfo: '', //出生记录
 						breed: '', //品种类型
@@ -719,7 +715,7 @@
 						age: '', //年龄
 						jiandang_img: '',
 						fodder: '', //饲料类型
-						fodder_man: '', //管理人
+						fodder_man: '', //管理人员
 						fodder_make_method: '', //制作方法
 						fodder_contain: '', //饲料成分
 						fodder_spec: '', //饲料特征
@@ -727,30 +723,30 @@
 						fodder_producter: '', //生产厂家
 						fodder_pro_num: '', //批准文号
 						fodder_img: '',
-						aiti_man: '', //管理人
+						aiti_man: '', //管理人员
 						sampling: '', //采样日期
 						ring_num: '', //圈舍号
 						aiti_verify_unit: '', //检测单位
 						aiti_verify_result: '', //检测结果
 						aiti_img: '',
-						make_man: '', //管理人
+						make_man: '', //管理人员
 						make_process: '', //加工过程
 						make_room: '', //加工车间
 						product_bag: '', //产品包装
-						check_man: '', //管理人
+						check_man: '', //管理人员
 						check_name: '', //检验名字
 						check_unit: '', //检验单位
 						check_img: '', //检验数据
-						verify_man: '', //管理人
+						verify_man: '', //管理人员
 						verify_num: '', //认证编号
 						verify_time: '', //认证日期
 						verify_long: '', //认证期限
 						verify_unit: '', //认证机构
 						verify_img: '',
-						yumiaoren: '', //管理人
+						yumiaoren: '', //管理人员
 						addr: '', //产地
 						yumiao_img: '',
-						baseman: '', //管理人
+						baseman: '', //管理人员
 						base_name: '', //基地名称
 						manage_style: '', //管理形式
 						area: '', //面积
@@ -1047,9 +1043,9 @@
 								processImg_farm = document.querySelectorAll('.make_process_farm img');
 								processImg_animal = document.querySelectorAll('.make_process_animal img');
 								console.log(processImg_farm.length);
-								addAttribute(processImg_farm, '1');
-								addAttribute(processImg_farm, '2');
-							}, 1000)
+								addAttribute(processImg_farm, 1);
+								addAttribute(processImg_animal, 2);
+							})
 						},
 						error: function(xhr, type, errorThrown) {
 							//异常处理；

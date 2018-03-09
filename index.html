@@ -14,14 +14,14 @@
 			
 			header {
 				background: #FE7916!important;
-				height: 60px!important;
+				height: 50px!important;
 				text-align: center;
 			}
 			
 			header p:first-child {
 				color: #fff;
-				font-size: 23px;
-				padding-top: 10px;
+				font-size: 6vw;
+				padding-top: 7px;
 				margin-bottom: 0;
 				font-family: '宋体';
 				letter-spacing: 1px;
@@ -33,7 +33,7 @@
 			}
 			
 			.container .banner .banner_img {
-				margin-top: 16px;
+				margin-top: 6px;
 			}
 			/*.container .banner .banner_icons {
 				margin-top: -3px;
@@ -44,7 +44,7 @@
 			}
 			
 			.container .banner .circle {
-				margin-top: 20px;
+				/*margin-top: 20px;*/
 			}
 			
 			.container .banner .mui-input-row input {
@@ -70,8 +70,8 @@
 			
 			.mui-content .banner .category {
 				margin: 20px 0 0 0;
-				position: absolute;
-				/*bottom: 0;*/
+				/*position: fixed;*/
+				bottom: 0;
 				right: 0;
 				left: 0;
 			}
@@ -85,7 +85,7 @@
 				list-style: none;
 				/*margin: 0 10px;*/
 				/*font-size: 12px;*/
-				padding: 12px 4.2vw;
+				padding: 3vw 4.2vw;
 				/*text-align: center;*/
 				/*border-radius: 16px;*/
 				flex: 1;
@@ -96,6 +96,8 @@
 			.mui-table-view-cell>a:not(.mui-btn) {
 				white-space: normal;
 				font-size: 4vw;
+				padding: 3vw 0;
+				text-align: center;
 			}
 		</style>
 	</head>
@@ -108,35 +110,35 @@
 		<section class="mui-content container">
 			<div class="banner">
 				<div class="banner_img">
-					<img width="100%" src="images/banner.png" />
+					<img width="100%" height="" src="images/banner.png" />
 				</div>
 				<div class="banner_icons">
 					<img width="100%" src="images/icons.png" />
 				</div>
 				<!--<form id="formSumit" class="mui-input-group" action="#">-->
-					<div class="mui-input-row">
-						<input type="text" class="mui-input-clear" id="suyuanCode" placeholder="请输入你想查询的条码">
-					</div>
+				<div class="mui-input-row">
+					<input type="text" class="mui-input-clear" id="suyuanCode" placeholder="请输入你想查询的条码">
+				</div>
 				<!--</form>-->
 				<div class="circle">
-					<img id="scan" width="50%" src="images/circle.png" />
+					<img id="scan" width="150vw" src="images/circle.gif" />
 					<div class="scanSy" id="scanSy">
 						<h4>扫码溯源</h4>
 					</div>
 				</div>
 				<div class="category" id="category">
 					<div class="mui-row">
-						<li class="mui-table-view-cell">
-							<a href="companyShow.html">企业展示</a>
+						<li class="mui-table-view-cell" id="category_li">
+							<a>企业展示</a>
 						</li>
 						<li class="mui-table-view-cell">
-							<a href="tsProducts.html">特色产品</a>
+							<a>特色产品</a>
 						</li>
 						<li class="mui-table-view-cell">
-							<a href="newsStatus.html">新闻动态</a>
+							<a>新闻动态</a>
 						</li>
 						<li class="mui-table-view-cell">
-							<a href="nj_course.html">农科课堂</a>
+							<a>农科课堂</a>
 						</li>
 					</div>
 				</div>
@@ -164,6 +166,25 @@
 			url: 'barcode_scan.html',
 		})
 	}, false)
+	//设置footer的高度
+	var windowHeight = document.documentElement.clientHeight;
+	var bodyHeight = document.body.offsetHeight;
+	var oLi1 = document.querySelector('#category_li > a');
+	var liHeight;
+	liHeight = getStyle(oLi1, 'height', 'paddingTop');
+	console.log(windowHeight, bodyHeight, document.getElementById('category'), liHeight)
+	document.getElementById('category').style.marginTop = windowHeight - bodyHeight + liHeight - 1 + 'px';
+	//获取元素属性值
+	function getStyle(ele, attribute1, attribute2) {
+		if(ele.currentStyle) {
+			liHeight = ele.currentStyle[attribute1].replace('px', '') - parseInt(ele.currentStyle[attribute2].replace('px', '')) * 2;
+			console.log('ie:' + liHeight);
+		} else if(window.getComputedStyle) {
+			liHeight = window.getComputedStyle(ele, null)[attribute1].replace('px', '') - window.getComputedStyle(ele, null)[attribute2].replace('px', '') * 2;
+			console.log('firefox:' + liHeight);
+		}
+		return liHeight;
+	}
 
 	function scaned(r, t, f) {
 		console.log(t);
@@ -186,15 +207,15 @@
 		if(e && e.keyCode == 13) {
 
 			suyuanCode = suyuan.value;
-			console.log("aaaa:"+suyuanCode)
+			console.log("aaaa:" + suyuanCode)
 			if(suyuanCode) {
-//				var page = mui.preload({
-//					url: "husbany.html",
-//					id: "husbany.html",
-//					extras: {
-//						suyuanCode: suyuanCode
-//					}
-//				})
+				//				var page = mui.preload({
+				//					url: "husbany.html",
+				//					id: "husbany.html",
+				//					extras: {
+				//						suyuanCode: suyuanCode
+				//					}
+				//				})
 				//				search.blur();
 				document.activeElement.blur();
 				//				formSubmit.submit();
@@ -218,18 +239,26 @@
 		console.log('yougundongtiao ')
 		document.getElementById('category').style.bottom = 0;
 	}
+	//	mui.plusReady(function(){
+	//		for(var i=0,len=htmlArr.length-2;i<len;i++){
+	//			mui.preload({
+	//				id:htmlArr[i],
+	//				url:htmlArr[i],
+	//			})
+	//		}
+	//	})
 	//打开各个页面
-	//	for(var i = 0, len = oLi.length; i < len; i++) {
-	//		(function(i) {
-	//			oLi[i].addEventListener("click", function() {
-	//				console.log(htmlArr[i])
-	//				mui.openWindow({
-	//					id: htmlArr[i],
-	//					url: htmlArr[i]
-	//				})
-	//			}, false)
-	//		})(i)
-	//	}
+	for(var i = 0, len = oLi.length; i < len; i++) {
+		(function(i) {
+			oLi[i].addEventListener("click", function() {
+				console.log(htmlArr[i])
+				mui.openWindow({
+					id: htmlArr[i],
+					url: htmlArr[i]
+				})
+			}, false)
+		})(i)
+	}
 
 	//	mui.plusReady(function(){
 	//		var first = null;

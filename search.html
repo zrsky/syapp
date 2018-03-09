@@ -110,6 +110,7 @@
 			document.onkeydown = function(event){
 				var e = event || window.event || arguments.caller.arguments[0];
 				if(e && e.keyCode == 13){
+					document.activeElement.blur();
 					//回车事件
 					if(searchhistory.records.contains(eval(document.getElementById('search')).value)){
 						searchhistory.records.remove(eval(document.getElementById('search')).value);

@@ -28,10 +28,12 @@
 				color: #fff!important;
 				line-height: 50px;
 			}
+			
 			.mui-table-view:before,
 			.mui-table-view:after {
 				content: none!important;
 			}
+			
 			.mui-content .searchResult {
 				font-size: 18px;
 				/*text-align: center;*/
@@ -97,6 +99,13 @@
 		page = 1,
 		name,
 		self;
+	mui.plusReady(function() {
+		self = plus.webview.currentWebview();
+		name = plus.webview.currentWebview().name;
+		console.log(name)
+		//初始化页面
+		loadMoreData()
+	})
 	mui.init({
 		swipeBack: true, //启用右滑关闭功能
 		pullRefresh: {
@@ -104,7 +113,7 @@
 
 			up: {
 				height: 50, //可选.默认50.触发上拉加载拖动距离
-				auto: true, //可选,默认false.自动上拉加载一次
+				auto: false, //可选,默认false.自动上拉加载一次
 				contentrefresh: "正在加载...", //可选，正在加载状态时，上拉加载控件上显示的标题内容
 				contentnomore: '没有更多数据了', //可选，请求完毕若没有更多数据时显示的提醒内容；
 				callback: loadMoreData //必选，刷新函数，根据具体业务来编写，比如通过ajax从服务器获取新数据；
@@ -112,11 +121,7 @@
 		}
 	});
 	console.log(url)
-	mui.plusReady(function() {
-		self = plus.webview.currentWebview();
-		name = plus.webview.currentWebview().name;
-		console.log(name)
-	})
+
 	var vue = new Vue({
 		el: '#app',
 		data: {
@@ -142,12 +147,12 @@
 	})
 
 	function loadMoreData() {
-		console.log('page:'+page)
+		console.log('page:' + page)
 		console.log("name:" + name)
 		mui.getJSON(url_sh + name, {
 			page: page
 		}, function(res) {
-			
+
 			console.log('结果：' + JSON.stringify(res));
 			if(res.data.length == 0) {
 				if(page == 2) {
@@ -163,7 +168,7 @@
 
 			vue.data = vue.data.concat(res.data);
 			var products_wrapper = document.getElementById('products_wrapper');
-			if(mui.os.ios){
+			if(mui.os.ios) {
 				products_wrapper.style.marginTop = '44px';
 			}
 
@@ -171,12 +176,12 @@
 		})
 		page++;
 	}
-		var old_back = mui.back;
-			mui.back = function() {
-				console.log('你到底做了什么')
-				if(self){
-					self.close();
-				}
-				old_back();
-			}
+	var old_back = mui.back;
+	mui.back = function() {
+		console.log('你到底做了什么')
+		if(self) {
+			self.close();
+		}
+		old_back();
+	}
 </script>

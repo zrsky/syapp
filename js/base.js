@@ -1,15 +1,14 @@
 //测试路径url
-var url = 'http://suyuan.test.91xinxiang.com';
-var prefix_url = 'http://suyuan.test.91xinxiang.com';
-
+var url = 'http://suy.51zhcs.com';
+var prefix_url = 'http://suy.51zhcs.com';
 
 //设置content的margin-top
-				var slider = document.getElementById('mui-slider-item');
-				
-				if(slider && mui.os.ios){
-					var height = slider.offsetHeight+ 50 + 44;
-					document.getElementById('pullrefresh').style.marginTop = height+'px';
-				}
+//				var slider = document.getElementById('mui-slider-item');
+//				
+//				if(slider && mui.os.ios){
+//					var height = slider.offsetHeight+ 50 + 44;
+//					document.getElementById('pullrefresh').style.marginTop = height+'px';
+//				}
 //往页面中渲染数据
 function render(url, container, html) {
 	var count = 0,
@@ -18,22 +17,19 @@ function render(url, container, html) {
 		time,
 		str = "";
 
-		mui.init({
+	mui.init({
 		swipeBack: true,
-		//		keyEventBind: {
-		//			backbutton: false //关闭back按键监听
-		//		},
 		pullRefresh: {
 			container: container,
 			up: {
-				height:50,
+				height: 50,
 				auto: false,
 				contentrefresh: '正在加载...',
-				contentnomore:'没有更多数据了',
+				contentnomore: '没有更多数据了',
 				callback: pullupRefresh
 			},
 			down: {
-				
+
 			}
 		}
 	});
@@ -50,17 +46,17 @@ function render(url, container, html) {
 			cate_name: ''
 		},
 		created: function() {
-			console.log('这里的container'+container)
+			console.log('这里的container' + container)
 			var that = this;
-		
+
 			//初始化页面
-			
+
 			ajax(url, 1, undefined, that);
 		},
 		mounted: function() {
-			
+
 		},
-	
+
 		methods: {
 			tapEvent: function(event, id, cate_name) {
 				console.log(id)
@@ -92,36 +88,37 @@ function render(url, container, html) {
 				'Content-Type': 'application/json'
 			},
 			success: function(msg) {
-				if(msg.cate_name){
+				if(msg.cate_name) {
 					vue.cate_name = msg.cate_name
 				}
 
 				//服务器返回响应，根据响应结果，分析是否登录成功；
-				var update_time = "",slider;
+				var update_time = "",
+					slider;
 				console.log(JSON.stringify(msg))
-				
+
 				if(msg.data) {
 					if(msg.data.data) {
 
 						data = msg.data.data;
 						if(data.length == 0) {
-							if(!loadingContent){
-							if(/keyword/gi.test(url)) {
-								vue.search = '找不到你搜索的内容';
+							if(!loadingContent) {
+								if(/keyword/gi.test(url)) {
+									vue.search = '找不到你搜索的内容';
+								}
 							}
-							}
-						}else{
-								vue.search='';
-							}
+						} else {
+							vue.search = '';
+						}
 					} else {
 						data = msg.data;
 						if(data.length == 0) {
-							if(!loadingContent){
-							if(/keyword/gi.test(url)) {
-								vue.search = '找不到你搜索的内容';
+							if(!loadingContent) {
+								if(/keyword/gi.test(url)) {
+									vue.search = '找不到你搜索的内容';
+								}
 							}
-							}
-						}else{
+						} else {
 							vue.search = '';
 						}
 
@@ -176,11 +173,11 @@ function render(url, container, html) {
 						that.cate_name = data.cate_name;
 					}
 					if(data.brand) {
-						
+
 						data.brand = data.brand.toString().split(',');
 					}
 
-//					console.log('最终的data' + JSON.stringify(that.data))
+					//					console.log('最终的data' + JSON.stringify(that.data))
 				}
 				console.log('看看变没变' + JSON.stringify(data))
 			},
@@ -199,18 +196,18 @@ function render(url, container, html) {
 				mui(container).pullRefresh().endPullupToRefresh();
 			}
 
-			
 			vue.data = vue.data.concat(data);
 
 		}, 1000);
 	}
 
 	function pullupRefresh() {
-		page++;5
-		console.log('多个url:'+url)
-			ajax(url, page, loadingContent);
-		console.log("container:"+container);
-//		mui(container).pullRefresh().refresh(true);
+		page++;
+		5
+		console.log('多个url:' + url)
+		ajax(url, page, loadingContent);
+		console.log("container:" + container);
+		//		mui(container).pullRefresh().refresh(true);
 	}
 
 }

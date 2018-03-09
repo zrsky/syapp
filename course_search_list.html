@@ -95,6 +95,13 @@
 <script src="js/base.js"></script>
 <script type="text/javascript">
 		var url_sh = url + '/index/article/index/keyword/',page=1,name,self;
+			mui.plusReady(function(){
+				self = plus.webview.currentWebview();
+				name = plus.webview.currentWebview().name;
+				console.log(name)
+				//初始化页面
+				loadMoreData()
+			})
 			mui.init({
 				swipeBack: true, //启用右滑关闭功能
 				pullRefresh: {
@@ -102,7 +109,7 @@
 					
 					up: {
 						height: 50, //可选.默认50.触发上拉加载拖动距离
-						auto: true, //可选,默认false.自动上拉加载一次
+						auto: false, //可选,默认false.自动上拉加载一次
 						contentrefresh: "正在加载...", //可选，正在加载状态时，上拉加载控件上显示的标题内容
 						contentnomore: '没有更多数据了', //可选，请求完毕若没有更多数据时显示的提醒内容；
 						callback: loadMoreData //必选，刷新函数，根据具体业务来编写，比如通过ajax从服务器获取新数据；
@@ -110,11 +117,7 @@
 				}
 			});
 			console.log(url)
-			mui.plusReady(function(){
-				self = plus.webview.currentWebview();
-				name = plus.webview.currentWebview().name;
-				console.log(name)
-			})
+			
 			var vue = new Vue({
 				el: '#app',
 				data: {
@@ -141,16 +144,18 @@
 		}
 			})
 			
+			//加载更多数据
 			function loadMoreData(){
+				console.log("page:"+page)
 				console.log("name:"+name)
 				mui.getJSON(url_sh + name, {
 					page:page
 				}, function(res) {
 						if(res.data.data.length==0){
-					if(page==2){
-							vue.search = '你搜索的内容为空';
-							mui('#pullrefresh').pullRefresh().disablePullupToRefresh();
-						}
+							if(page==2){
+								vue.search = '你搜索的内容为空';
+								mui('#pullrefresh').pullRefresh().disablePullupToRefresh();
+							}
 					}else{
 						res.data.data.forEach(function(item,index){
 							res.data.data[index].thumb = url + item.thumb;
@@ -167,7 +172,7 @@
 				})
 				page++;
 			}
-
+		//返回
 		var old_back = mui.back;
 			mui.back = function() {
 				console.log('你到底做了什么')

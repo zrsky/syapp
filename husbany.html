@@ -139,21 +139,26 @@
 				margin-top: 40%;
 				height: 100%;
 			}
+			
 			.mui-content .loader {
-				height:100%;
+				height: 100%;
 			}
+			
 			.mui-content .make_process p {
 				margin-left: 10px;
 			}
+			
 			.mui-content .make_process p.no_margin {
 				margin-left: 0;
 			}
 			/*图片预览*/
+			
 			.mui-preview-image.mui-fullscreen {
 				position: fixed;
 				z-index: 20;
 				background-color: #000;
 			}
+			
 			.mui-preview-header,
 			.mui-preview-footer {
 				position: absolute;
@@ -161,14 +166,17 @@
 				left: 0;
 				z-index: 10;
 			}
+			
 			.mui-preview-header {
 				height: 44px;
 				top: 0;
 			}
+			
 			.mui-preview-footer {
 				height: 50px;
 				bottom: 0px;
 			}
+			
 			.mui-preview-header .mui-preview-indicator {
 				display: block;
 				line-height: 25px;
@@ -180,6 +188,7 @@
 				border-radius: 12px;
 				font-size: 16px;
 			}
+			
 			.mui-preview-image {
 				display: none;
 				-webkit-animation-duration: 0.5s;
@@ -187,19 +196,23 @@
 				-webkit-animation-fill-mode: both;
 				animation-fill-mode: both;
 			}
+			
 			.mui-preview-image.mui-preview-in {
 				-webkit-animation-name: fadeIn;
 				animation-name: fadeIn;
 			}
+			
 			.mui-preview-image.mui-preview-out {
 				background: none;
 				-webkit-animation-name: fadeOut;
 				animation-name: fadeOut;
 			}
+			
 			.mui-preview-image.mui-preview-out .mui-preview-header,
 			.mui-preview-image.mui-preview-out .mui-preview-footer {
 				display: none;
 			}
+			
 			.mui-zoom-scroller {
 				position: absolute;
 				display: -webkit-box;
@@ -220,26 +233,32 @@
 				margin: 0;
 				-webkit-backface-visibility: hidden;
 			}
+			
 			.mui-zoom {
 				-webkit-transform-style: preserve-3d;
 				transform-style: preserve-3d;
 			}
+			
 			.mui-slider .mui-slider-group .mui-slider-item img {
 				width: 100%;
 				height: auto;
 				max-width: 100%;
 				max-height: 100%;
 			}
+			
 			.mui-android-4-1 .mui-slider .mui-slider-group .mui-slider-item img {
 				width: 100%;
 			}
+			
 			.mui-android-4-1 .mui-slider.mui-preview-image .mui-slider-group .mui-slider-item {
 				display: inline-table;
 			}
+			
 			.mui-android-4-1 .mui-slider.mui-preview-image .mui-zoom-scroller img {
 				display: table-cell;
 				vertical-align: middle;
 			}
+			
 			.mui-preview-loading {
 				position: absolute;
 				width: 100%;
@@ -248,9 +267,11 @@
 				left: 0;
 				display: none;
 			}
+			
 			.mui-preview-loading.mui-active {
 				display: block;
 			}
+			
 			.mui-preview-loading .mui-spinner-white {
 				position: absolute;
 				top: 50%;
@@ -260,10 +281,12 @@
 				height: 50px;
 				width: 50px;
 			}
+			
 			.mui-preview-image img.mui-transitioning {
 				-webkit-transition: -webkit-transform 0.5s ease, opacity 0.5s ease;
 				transition: transform 0.5s ease, opacity 0.5s ease;
 			}
+			
 			@-webkit-keyframes fadeIn {
 				0% {
 					opacity: 0;
@@ -272,6 +295,7 @@
 					opacity: 1;
 				}
 			}
+			
 			@keyframes fadeIn {
 				0% {
 					opacity: 0;
@@ -280,6 +304,7 @@
 					opacity: 1;
 				}
 			}
+			
 			@-webkit-keyframes fadeOut {
 				0% {
 					opacity: 1;
@@ -288,6 +313,7 @@
 					opacity: 0;
 				}
 			}
+			
 			@keyframes fadeOut {
 				0% {
 					opacity: 1;
@@ -296,11 +322,13 @@
 					opacity: 0;
 				}
 			}
+			
 			p img {
 				max-width: 100%;
 				height: auto;
 			}
 			/*/图片预览*/
+			
 			[v-cloak] {
 				display: none
 			}
@@ -321,15 +349,6 @@
 			</div>-->
 		</header>
 		<div class="mui-content mui-row mui-fullscreen" id="info" v-cloak>
-			<!--<div v-show="loading" class="loader">
-				<div class="loader-inner line-scale">
-					<div></div>
-					<div></div>
-					<div></div>
-					<div></div>
-					<div></div>
-				</div>
-			</div>-->
 			<div v-if="alertMsg" class="alertMsg">
 				{{alertMsg}}
 			</div>
@@ -370,7 +389,7 @@
 								<p v-if="name">产品名称：<span>{{name}}</span></p>
 								<p v-if="batch">生产批次：<span>{{batch}}</span></p>
 								<p v-if="pro_img" class="img_type">
-									产品图片：<br/><img width="120px" :src="pro_img" data-preview-src="" data-preview-group="1"/>
+									产品图片：<br/><img width="120px" :src="pro_img" data-preview-src="" data-preview-group="1" />
 								</p>
 							</li>
 						</ul>
@@ -380,12 +399,12 @@
 					<div class="detail">
 						<ul>
 							<li>
-								<p v-if="yumiaoren">管理人：<span>{{yumiaoren}}</span></p>
+								<p v-if="yumiaoren">管理人员：<span>{{yumiaoren}}</span></p>
 								<p v-if="breed">品种：<span>{{breed}}</span></p>
 								<p v-if="addr">产地：<span>{{addr}}</span></p>
 								<p v-if="birt">种植日期：<span>{{birt}}</span></p>
 								<p v-if="yumiao_img" class="img_type">
-									<img width="120px" :src="yumiao_img" data-preview-src="" data-preview-group="1"/>
+									<img width="120px" :src="yumiao_img" data-preview-src="" data-preview-group="1" />
 								</p>
 							</li>
 						</ul>
@@ -395,25 +414,25 @@
 					<div class="detail">
 						<ul>
 							<li>
-								<p v-if="baseman">管理人：<span>{{baseman}}</span></p>
+								<p v-if="baseman">管理人员：<span>{{baseman}}</span></p>
 								<p v-if="base_name">基地名称：<span>{{base_name}}</span></p>
 								<p v-if="manage_style">管理形式：<span>{{manage_style}}</span></p>
 								<p v-if="area">面积：<span>{{area}}</span></p>
 								<p v-if="soil">土壤：<span>{{soil}}</span></p>
 								<p v-if="water">水质：<span>{{water}}</span></p>
 								<p v-if="base_img" class="img_type">
-									<img width="120px" :src="base_img" data-preview-src="" data-preview-group="1"/>
+									<img width="120px" :src="base_img" data-preview-src="" data-preview-group="1" />
 								</p>
 							</li>
 						</ul>
 					</div>
 				</div>
-				<div id="content_tree4" class="mui-control-content" style="margin-left:-5px;">
+				<div id="content_tree4" class="mui-control-content">
 					<div class="detail">
 						<ul>
 							<li>
 								<div v-if="manure==1">
-									<p v-if="manure_man">管理人：<span>{{manure_man}}</span></p>
+									<p v-if="manure_man">管理人员：<span>{{manure_man}}</span></p>
 									<p>肥料类型：<span>化学肥料</span></p>
 									<p v-if="manure_type==1">
 										化肥类型: <span>单质</span>
@@ -436,17 +455,17 @@
 									<p v-if="manure_verify">生产许可证: <span>{{manure_verify}}</span></p>
 									<p v-if="manure_time">生产日期: <span>{{manure_time}}</span></p>
 									<p v-if="manure_img" class="img_type">
-										<img width="120px" :src="manure_img" data-preview-src="" data-preview-group="1"/>
+										<img width="120px" :src="manure_img" data-preview-src="" data-preview-group="1" />
 									</p>
 								</div>
 								<div v-else-if="manure==2">
-									<p v-if="manure_man">管理人：<span>{{manure_man}}</span></p>
-									<p>肥料类型: <span>农家肥料</span></p>
+									<p v-if="manure_man">管理人员：<span>{{manure_man}}</span></p>
+									<p>肥料类型: <span>农家肥</span></p>
 									<p v-if="manure_method">制作方法：<span>{{manure_method}}</span></p>
-									<p v-if="manure_element">成分：<span>{{manure_element}}</span></p>
-									<p v-if="manure_spe">特征：<span>{{manure_spe}}</span></p>
+									<p v-if="manure_element">成份：<span>{{manure_element}}</span></p>
+									<p v-if="manure_spe">特性：<span>{{manure_spe}}</span></p>
 									<p v-if="manure_img" class="img_type">
-										<img width="120px" :src="manure_img" data-preview-src="" data-preview-group="1"/>
+										<img width="120px" :src="manure_img" data-preview-src="" data-preview-group="1" />
 									</p>
 								</div>
 							</li>
@@ -457,7 +476,7 @@
 					<div class="detail">
 						<ul>
 							<li>
-								<p v-if="chem_man">管理人：<span>{{chem_man}}</span></p>
+								<p v-if="chem_man">管理人员：<span>{{chem_man}}</span></p>
 								<p v-if="chemical_name">农药名称：<span>{{chemical_name}}</span></p>
 								<p v-if="chemical_obj">防治对象：<span>{{chemical_obj}}</span></p>
 								<p v-if="chem_use_dose">用药剂量：<span>{{chem_use_dose}}</span></p>
@@ -475,7 +494,7 @@
 								<p v-else-if="chem_water_type==4">农药剂型: <span>颗粒剂</span></p>
 								<p v-else-if="chem_water_type==5">农药剂型: <span>悬浮剂</span></p>
 								<p v-else-if="chem_water_type==6">农药剂型: <span>烟剂</span></p>
-								<p v-else-if="chem_water_type==7">农药剂型: <span>水分散剂</span></p>
+								<p v-else-if="chem_water_type==7">农药剂型: <span>水份散剂</span></p>
 								<p v-else-if="chem_water_type==8">农药剂型: <span>缓蚀剂</span></p>
 								<p v-else-if="chem_water_type==9">农药剂型: <span>水剂</span></p>
 								<p v-else-if="chem_water_type==10">农药剂型: <span>水溶剂</span></p>
@@ -483,7 +502,7 @@
 								<p v-if="chem_verify">生产许可证：<span>{{chem_verify}}</span></p>
 								<p v-if="chem_time">生产日期：<span>{{chem_time}}</span></p>
 								<p v-if="chem_img" class="img_type">
-									<img width="120px" :src="chem_img" data-preview-src="" data-preview-group="1"/>
+									<img width="120px" :src="chem_img" data-preview-src="" data-preview-group="1" />
 								</p>
 							</li>
 						</ul>
@@ -493,14 +512,14 @@
 					<div class="detail">
 						<ul>
 							<li>
-								<p v-if="make_man">管理人：<span>{{make_man}}</span></p>
+								<p v-if="make_man">管理人员：<span>{{make_man}}</span></p>
 								<p v-if="make_room">加工车间：<span>{{make_room}}</span></p>
-								<div class="make_process" v-if="make_process">
-									<p class="no_margin">加工过程：</p>
+								<div class="make_process make_process_farm makeProgress" v-if="make_process">
+									<p style="margin-left:-5px" class="no_margin">加工过程：</p>
 									<p class="make_process no_margin" v-html="make_process"></p>
 								</div>
 								<p v-if="product_bag" class="img_type">产品包装：<br>
-									<img style="margin-left:10px" width="120px" :src="product_bag" alt="" data-preview-src="" data-preview-group="1"/></p>
+									<img style="margin-left:10px" width="120px" :src="product_bag" alt="" data-preview-src="" data-preview-group="1" /></p>
 							</li>
 						</ul>
 					</div>
@@ -509,11 +528,11 @@
 					<div class="detail">
 						<ul>
 							<li>
-								<p v-if="check_man">管理人：<span>{{check_man}}</span></p>
+								<p v-if="check_man">管理人员：<span>{{check_man}}</span></p>
 								<p v-if="check_name">检验名字：<span>{{check_name}}</span></p>
 								<p v-if="check_unit">检验单位：<span>{{check_unit}}</span></p>
 								<p v-if="check_img" class="img_type">
-									检验数据:<br/><img width="120px" :src="check_img" data-preview-src="" data-preview-group="1"/>
+									检验结果:<br/><img width="120px" :src="check_img" data-preview-src="" data-preview-group="1" />
 								</p>
 							</li>
 						</ul>
@@ -523,13 +542,13 @@
 					<div class="detail">
 						<ul>
 							<li>
-								<p v-if="verify_man">管理人：<span>{{verify_man}}</span></p>
+								<p v-if="verify_man">管理人员：<span>{{verify_man}}</span></p>
 								<p v-if="verify_num">认证编号：<span>{{verify_num}}</span></p>
 								<p v-if="verify_time">认证日期：<span>{{verify_time}}</span></p>
 								<p v-if="verify_long">认证期限: <span>{{verify_long}}</span></p>
 								<p v-if="verify_unit">认证机构: <span>{{verify_unit}}</span></p>
 								<p v-if="verify_img" class="img_type">
-									<img width="120px" :src="verify_img" data-preview-src="" data-preview-group="1"/>
+									<img width="120px" :src="verify_img" data-preview-src="" data-preview-group="1" />
 								</p>
 							</li>
 						</ul>
@@ -550,7 +569,7 @@
 								<p v-if="name">产品名称：<span>{{name}}</span></p>
 								<p v-if="batch">生产批次：<span>{{batch}}</span></p>
 								<p v-if="pro_img" class="img_type">产品图片:<br>
-									<img :src="pro_img" width="120px" data-preview-src="" data-preview-group="2"/>
+									<img :src="pro_img" width="120px" data-preview-src="" data-preview-group="2" />
 								</p>
 							</li>
 						</ul>
@@ -560,42 +579,42 @@
 					<div class="detail">
 						<ul>
 							<li>
-								<p v-if="jiandang_man">管理人：<span>{{jiandang_man}}</span></p>
+								<p v-if="jiandang_man">管理人员：<span>{{jiandang_man}}</span></p>
 								<p v-if="birt">出生日期：<span>{{birt}}</span></p>
 								<p v-if="birinfo">出生记录：<span>{{birinfo}}</span></p>
 								<p v-if="breed">品种类型：<span>{{breed}}</span></p>
 								<p v-if="sex">性别：<span>{{sex==1?'雄性':'雌性'}}</span></p>
-								<p v-if="{age>=0?true:false}">年龄：<span>{{age}}</span>岁</span>
+								<p v-if="age>=0">年龄：<span>{{age}}</span>岁</span>
 								</p>
 								<p v-if="jiandang_img" class="img_type">
-									<img :src="jiandang_img" width="120px" data-preview-src="" data-preview-group="2"/>
+									<img :src="jiandang_img" width="120px" data-preview-src="" data-preview-group="2" />
 								</p>
 							</li>
 						</ul>
 					</div>
 				</div>
-				<div id="content3" class="mui-control-content" style="margin-left:-5px;">
-					<div class="detail">
+				<div id="content3" class="mui-control-content">
+					<div class="detail" style="margin-left:-5px">
 						<ul>
 							<li>
 								<div v-if="fodder != 2">
-									<p v-if="fodder_man">管理人：<span>{{fodder_man}}</span></p>
+									<p v-if="fodder_man">管理人员：<span>{{fodder_man}}</span></p>
 									<p v-if="fodder">饲料类型：<span>{{fodder == 2?'普通饲料':'自制饲料'}}</span></p>
 									<p v-if="fodder_make_method">制作方法：<span>{{fodder_make_method}}</span></p>
-									<p v-if="fodder_contain">饲料成分：<span>{{fodder_contain}}</span></p>
+									<p v-if="fodder_contain">饲料成份：<span>{{fodder_contain}}</span></p>
 									<p v-if="fodder_spec">饲料特征：<span>{{fodder_spec}}</span></p>
 									<p class="img_type">
-										<img :src="fodder_img" width="120px" data-preview-src="" data-preview-group="2"/>
+										<img :src="fodder_img" width="120px" data-preview-src="" data-preview-group="2" />
 									</p>
 								</div>
 								<div v-else-if="fodder == 2">
-									<p v-if="fodder_man">管理人：<span>{{fodder_man}}</span></p>
+									<p v-if="fodder_man">管理人员：<span>{{fodder_man}}</span></p>
 									<p v-if="fodder">饲料类型：<span>{{fodder == 2?'普通饲料':'自制饲料'}}</span></p>
 									<p v-if="fodder_name">饲料名称：<span>{{fodder_name}}</span></p>
 									<p v-if="fodder_producter">生产厂家：<span>{{fodder_producter}}</span></p>
 									<p v-if="fodder_pro_num">批准文号：<span>{{fodder_pro_num}}</span></p>
 									<p v-if="fodder_img" class="img_type">
-										<img :src="fodder_img" width="120px" data-preview-src="" data-preview-group="2"/>
+										<img :src="fodder_img" width="120px" data-preview-src="" data-preview-group="2" />
 									</p>
 								</div>
 							</li>
@@ -604,17 +623,15 @@
 				</div>
 				<div id="content4" class="mui-control-content">
 					<div class="detail">
-						<!--<div class="line">
-						</div>-->
 						<ul>
 							<li>
-								<p>管理人：<span>{{aiti_man}}</span></p>
+								<p>管理人员：<span>{{aiti_man}}</span></p>
 								<p>采样日期：<span>{{sampling}}</span></p>
 								<p>圈舍号：<span>{{ring_num}}</span></p>
 								<p>检测单位：<span>{{aiti_verify_unit}}</span></p>
 								<p>检测结果：<span>{{aiti_verify_result}}</span></p>
 								<p v-if="aiti_img" class="img_type">
-									<img :src="aiti_img" width="120px" data-preview-src="" data-preview-group="2"/>
+									<img :src="aiti_img" width="120px" data-preview-src="" data-preview-group="2" />
 								</p>
 							</li>
 						</ul>
@@ -624,11 +641,11 @@
 					<div class="detail">
 						<ul>
 							<li>
-								<p v-if="make_man">管理人：<span v-html="make_man"></span></p>
-								<p class="make_process" v-if="make_process">加工过程：<span v-html="make_process"></span></p>
+								<p v-if="make_man">管理人员：<span v-html="make_man"></span></p>
 								<p v-if="make_room">加工车间：<span>{{make_room}}</span></p>
+								<p class="make_process make_process_animal makeProgress" v-if="make_process"><span>加工过程：</span><span v-html="make_process"></span></p>
 								<p v-if="product_bag" class="img_type">
-									产品包装：<br/><img style="margin-left:10px;" :src="product_bag" width="120px" data-preview-src="" data-preview-group="2"/>
+									产品包装：<br/><img style="margin-left:10px;" :src="product_bag" width="120px" data-preview-src="" data-preview-group="2" />
 								</p>
 							</li>
 						</ul>
@@ -638,11 +655,11 @@
 					<div class="detail">
 						<ul>
 							<li>
-								<p v-if="check_man">管理人：<span>{{check_man}}</span></p>
+								<p v-if="check_man">管理人员：<span>{{check_man}}</span></p>
 								<p v-if="check_name">检验名字：<span>{{check_name}}</span></p>
 								<p v-if="check_unit">检验单位：<span>{{check_unit}}</span></p>
 								<p v-if="check_img" class="img_type">
-									检验数据：<br/><img :src="check_img" width="120px" data-preview-src="" data-preview-group="2"/>
+									检验结果：<br/><img :src="check_img" width="120px" data-preview-src="" data-preview-group="2" />
 								</p>
 							</li>
 						</ul>
@@ -652,13 +669,13 @@
 					<div class="detail">
 						<ul>
 							<li>
-								<p v-if="verify_man">管理人：<span>{{verify_man}}</span></p>
+								<p v-if="verify_man">管理人员：<span>{{verify_man}}</span></p>
 								<p v-if="verify_num">认证编号：<span>{{verify_num}}</span></p>
 								<p v-if="verify_time">认证日期：<span>{{verify_time}}</span></p>
 								<p v-if="verify_long">认证期限：<span>{{verify_long}}</span></p>
 								<p v-if="verify_unit">认证机构：<span>{{verify_unit}}</span></p>
 								<p v-if="verify_img" class="img_type">
-									<img :src="verify_img" width="120px" data-preview-src="" data-preview-group="2"/>
+									<img :src="verify_img" width="120px" data-preview-src="" data-preview-group="2" />
 								</p>
 							</li>
 						</ul>
@@ -679,23 +696,23 @@
 				swipeBack: true //启用右滑关闭功能
 			});
 			//			var img_url = "http://suy.51zhcs.com";
-			var img_url = url,w,
+			var img_url = url,
+				w,
 				html;
-				
-			
-			
+
 			var data_detail = new Vue({
 				el: '#info',
 				data: {
-					flag:false,
-					loading:null,
+					data: {},
+					flag: false,
+					loading: null,
 					alertMsg: '',
 					base_img: '',
 					name: '', //产品名称
 					batch: '', //产品批次
 					introduce: '', //产品简介
 					pro_img: '', //产品图片
-					jiandang_man: '', //管理人
+					jiandang_man: '', //管理人员
 					birt: '', //出生日期/种植日期
 					birinfo: '', //出生记录
 					breed: '', //品种类型
@@ -703,7 +720,7 @@
 					age: '', //年龄
 					jiandang_img: '',
 					fodder: '', //饲料类型
-					fodder_man: '', //管理人
+					fodder_man: '', //管理人员
 					fodder_make_method: '', //制作方法
 					fodder_contain: '', //饲料成分
 					fodder_spec: '', //饲料特征
@@ -711,48 +728,48 @@
 					fodder_producter: '', //生产厂家
 					fodder_pro_num: '', //批准文号
 					fodder_img: '',
-					aiti_man: '', //管理人
+					aiti_man: '', //管理人员
 					sampling: '', //采样日期
 					ring_num: '', //圈舍号
 					aiti_verify_unit: '', //检测单位
 					aiti_verify_result: '', //检测结果
 					aiti_img: '',
-					make_man: '', //管理人
+					make_man: '', //管理人员
 					make_process: '', //加工过程
 					make_room: '', //加工车间
 					product_bag: '', //产品包装
-					check_man: '', //管理人
+					check_man: '', //管理人员
 					check_name: '', //检验名字
 					check_unit: '', //检验单位
 					check_img: '', //检验数据
-					verify_man: '', //管理人
+					verify_man: '', //管理人员
 					verify_num: '', //认证编号
 					verify_time: '', //认证日期
 					verify_long: '', //认证期限
 					verify_unit: '', //认证机构
 					verify_img: '',
-					yumiaoren: '', //管理人
+					yumiaoren: '', //管理人员
 					addr: '', //产地
 					yumiao_img: '',
-					baseman: '', //管理人
+					baseman: '', //管理人员
 					base_name: '', //基地名称
 					manage_style: '', //管理形式
 					area: '', //面积
 					soil: '', //土壤
 					water: '', //水质
-					manure_man: '', //管理人
+					manure_man: '', //管理人员
 					manure: '',
 					manure_type: '', //肥料类型
 					manure_type2: '', //化肥剂型
 					manure_verify: '', //生产许可证
 					manure_time: '', //生产日期
 					manure_img: '',
-					breed: '', //管理人
+					breed: '', //管理人员
 					manure_method: '', //制作方法
 					manure_element: '', //成分
 					manure_spe: '', //特征
 					manure_img: '', //
-					chem_man: '', //管理人
+					chem_man: '', //管理人员
 					chemical_name: '', //农药名称
 					chemical_obj: '', //防治对象
 					chem_use_dose: '', //用药剂量
@@ -762,7 +779,7 @@
 					chem_verify: '', //生产许可证
 					chem_time: '', //生产日期
 					chem_img: '',
-					make_man: '', //管理人
+					make_man: '', //管理人员
 					make_room: '', //加工车间
 					make_process: '' //加工过程
 				}
@@ -776,8 +793,6 @@
 			var html = [];
 			var processImg;
 			var originId = '';
-			//			var originId = window.location.search.split("=")[1];
-			//			console.log('申请'+originId)
 
 			mui.plusReady(function() {
 				if(plus.webview.currentWebview().suyuanCode) {
@@ -786,63 +801,22 @@
 					search_result();
 				}
 				//创建等待框
-					w = plus.nativeUI.showWaiting('加载中...');
+				w = plus.nativeUI.showWaiting('加载中...');
 			})
-			//			var originId = "DhE3S56DW9g";
-			//			alert(originId);
-			//			var str =  (window.location.search).substring(1);
-			//			  var originId;
-			//			  console.log(str)
-			//			  if(str.indexOf('&') != -1){
-			//			  	console.log(5424)
-			//			      for (var i = 0; i < str.split('&').length; i++) {
-			//			           if(str.split('&')[i].split("=")[0] == 'id'){
-			//			           	console.log(i)
-			//			              originId = str.split('&')[i].split("=")[1]
-			//			           }
-			//			      }
-			//			  }
-			//x3xe6xMzeBI  畜牧   WDIXRDMIGjY 种植
-			//			var originId = "WDIXRDMIGjY"
 
 			//左侧选项卡数量+1
 			var m = ["基本信息", "建档管理", "饲料管理", "防疫管理", "加工管理", "质量检测管理", "质量认证管理"];
 			var m1 = ['基本信息', '育苗管理', '基地管理', '肥料管理', '农药管理', '加工管理', '质量检测管理', '质量认证管理'];
 
-			//键盘事件
-			//			document.onkeydown = function(event) {
-			//				var e = event || window.event || arguments.caller.arguments[0];
-			//				if(e && e.keyCode == 13) {
-			//					console.log("search:" + search.value);
-			//					//回车事件
-			//					tree_num.innerHTML = search.value;
-			//					animal_num.innerHTML = search.value;
-			//					originId = search.value;
-			//					search_result();
-			//				}
-			//			}
-			//			扫描二维码
-			//			document.getElementById('camera').addEventListener('tap', function() {
-			//				mui.openWindow({
-			//					id: 'barcode_scan',
-			//					url: 'barcode_scan.html'
-			//				})
-			//			})
-			//			function scaned(t, r, f) {
-			//				console.log("返回的数据："+t, r, f);
-			//				originId = r;
-			//				tree_num.innerHTML = r;
-			//				animal_num.innerHTML = r;
-			//				search_result();
-			//			}
 			function search_result() {
-				tree_num.innerHTML = originId;
-				animal_num.innerHTML = originId;
+				if(tree_num) {
+					tree_num.innerHTML = originId;
+				}
+				if(animal_num) {
+					animal_num.innerHTML = originId;
+				}
 				var longitude, latitude;
-				//				var mask = mui.createMask(); //遮罩层
 				var geolocation = new BMap.Geolocation();
-				//				plus.nativeUI.showWaiting();
-				//				mask.show();
 				geolocation.getCurrentPosition(function(r) {
 					longitude = r.longitude;
 					latitude = r.latitude;
@@ -862,32 +836,41 @@
 							//关闭等待框
 							w.close();
 							//加工过程图片添加属性
-							processImg = document.querySelector('.make_process img');
-							processImg.setAttribute('data-preview-src','');
-							processImg.setAttribute('data-preview-group','3');
+
 							data_detail.flag = true;
 							//服务器返回响应，根据响应结果，分析是否登录成功；
-							console.log("data:" + JSON.stringify(res));
+							console.log("res:" + JSON.stringify(res));
 							console.log(res.data.length)
 							if(res.data.length == 0) {
-								console.log(55687467465465646546)
 								data_detail.alertMsg = '没有此产品，请查证后重新输入。';
 								console.log(data_detail.alertMsg)
-							}else{
+							} else {
 								infos.style.borderLeft = '1px solid #c8c7cc';
 								contents.style.borderLeft = '1px solid #c8c7cc';
 							}
 							var obj_data = res.data.product;
 							if(res.status == 0) {
-								//								plus.nativeUI.closeWaiting();
-								//								mask.close();
 								console.log("name:" + obj_data.name);
 								data_detail.$nextTick(function() {
 									console.log('eeee');
 									equal();
-								})
-								equal();
+									setTimeout(function() {
+										processImg = document.querySelectorAll('.make_process_farm img');
+										processImg1 = document.querySelectorAll('.make_process_animal img');
+										setImage(processImg, 1);
+										setImage(processImg1, 2);
+										//设置图片放大等级
+										function setImage(ele, group) {
+											for(var i = 0, len = ele.length; i < len; i++) {
+												ele[i].setAttribute('data-preview-src', '');
+												ele[i].setAttribute('data-preview-group', group);
+											}
+										}
 
+									})
+
+								})
+								//赋值构造函数属性
 								function equal() {
 									if(obj_data.base_img) {
 										data_detail.base_img = img_url + obj_data.base_img;
@@ -925,7 +908,7 @@
 									data_detail.aiti_verify_result = obj_data.aiti_verify_result;
 									if(obj_data.aiti_img) {
 										data_detail.aiti_img = img_url + obj_data.aiti_img;
-										
+
 									}
 									data_detail.make_man = obj_data.make_man;
 									data_detail.make_process = obj_data.make_process;
@@ -994,22 +977,7 @@
 									html = [];
 								}
 								var controlsDiv = document.querySelectorAll("#segmentedControlInfos > div li");
-								//								var controlsSpan = controlsDiv.children('p span');
 								var contentsDiv = document.querySelectorAll("#segmentedControlContents > div li");
-								//								var contentsSpan = contentsDiv.children('p span');
-								//								没有的隐藏
-								//								for(var i=0,len=controlsDiv.length;i<len;i++){
-								//									if(!controlsDiv[i].children[0]){
-								////										m.splice(i,1);
-								//									}
-								//									console.log("m变成啥样了"+m)
-								//								}
-								//								for(var i=0,len=contentsDiv.length;i<len;i++){
-								//									if(!contentsDiv[i].children[0]){
-								////										m1.splice(i,1);
-								//									}
-								//									console.log("m1变成啥样了"+m1)
-								//								}
 
 								if(obj_data.product_cate_id == 2) {
 									console.log("html2" + html);
@@ -1040,9 +1008,6 @@
 										console.log('aaa');
 									})
 								}
-								//								mui('.img_type')[0].addEventListener('tap',function() {
-								//									console.log('aaa');
-								//								})
 							}
 						},
 						error: function(xhr, type, errorThrown) {
